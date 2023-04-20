@@ -21,6 +21,10 @@ public class Citalac extends Korisnik {
     @OneToMany (mappedBy = "citalac", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set <Polica> ostalePolice = new HashSet<>();
 
+//    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private Set<Recenzija> recenzije = new HashSet<>();
+
+
     public Polica getWantToRead() {
         return wantToRead;
     }
