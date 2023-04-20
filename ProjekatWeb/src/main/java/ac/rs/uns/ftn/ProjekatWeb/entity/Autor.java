@@ -30,4 +30,12 @@ public class Autor extends Korisnik {
     public void setKnjige(Set<Knjiga> knjige) {
         this.knjige = knjige;
     }
+
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "aktivnost=" + aktivnost +
+                ", knjige=" + knjige +
+                '}';
+    }
 }

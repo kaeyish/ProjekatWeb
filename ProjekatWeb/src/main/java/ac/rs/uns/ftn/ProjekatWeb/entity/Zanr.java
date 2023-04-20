@@ -42,4 +42,13 @@ public class Zanr implements Serializable {
     public void setKnjige(Set<Knjiga> knjige) {
         this.knjige = knjige;
     }
+
+    @Override
+    public String toString() {
+        return "Zanr{" +
+                "id=" + id +
+                ", naziv='" + naziv + '\'' +
+                ", knjige=" + knjige +
+                '}';
+    }
 }

@@ -30,6 +30,9 @@ public class Polica implements Serializable {
     )
     private Set<StavkaPolice> stavkePolice = new HashSet<>();
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn (name = "citalac_id")
+    private Citalac citalac;
 
 
     public Long getId() {
@@ -54,6 +57,14 @@ public class Polica implements Serializable {
 
     public void setPrimarna(boolean primarna) {
         this.primarna = primarna;
+    }
+
+    public Citalac getCitalac() {
+        return citalac;
+    }
+
+    public void setCitalac(Citalac citalac) {
+        this.citalac = citalac;
     }
 
     @Override

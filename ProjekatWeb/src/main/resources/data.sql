@@ -24,3 +24,4 @@ INSERT INTO STAVKA_POLICE (knjiga_id, recenzija_id) VALUES (1,1);
 
 --INSERT INTO ZAHTEV_AKTIVACIJA (status, email, telefon, poruka, datum) VALUES (0, 'testmejl123@gmail.com', '+1 234 556 78', 'Zahtev odobren', '2021-10-11');
 
+INSERT INTO CITALAC (id, ime, prezime, korisnicko_ime, mail, lozinka, datum_rodjenja, profilna_slika, opis, currently_reading_id, want_to_read_id, read_id) VALUES (1,'Petar', 'Peric','petar000' ,'peric@gmail.com', 'sifra123','1990-01-01','slikaprofila.rs','Ovo je moj profil', 2, 1, 3);

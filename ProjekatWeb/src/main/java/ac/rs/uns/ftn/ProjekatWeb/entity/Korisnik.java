@@ -105,4 +105,19 @@ public abstract class Korisnik implements Serializable {
     public void setOpis(String opis) {
         this.opis = opis;
     }
+
+    @Override
+    public String toString() {
+        return "Korisnik{" +
+                "id=" + id +
+                ", ime='" + ime + '\'' +
+                ", prezime='" + prezime + '\'' +
+                ", korisnickoIme='" + korisnickoIme + '\'' +
+                ", mail='" + mail + '\'' +
+                ", lozinka='" + lozinka + '\'' +
+                ", datumRodjenja=" + datumRodjenja +
+                ", profilnaSlika='" + profilnaSlika + '\'' +
+                ", opis='" + opis + '\'' +
+                '}';
+    }
 }

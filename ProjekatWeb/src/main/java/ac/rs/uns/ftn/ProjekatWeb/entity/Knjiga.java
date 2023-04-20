@@ -124,4 +124,20 @@ public class Knjiga implements Serializable {
     public void setZanrovi(Set<Zanr> zanrovi) {
         this.zanrovi = zanrovi;
     }
+
+    @Override
+    public String toString() {
+        return "Knjiga{" +
+                "id=" + id +
+                ", naslov='" + naslov + '\'' +
+                ", naslovnaFotografija='" + naslovnaFotografija + '\'' +
+                ", isbn=" + isbn +
+                ", datumObjavljivanja=" + datumObjavljivanja +
+                ", brojStrana=" + brojStrana +
+                ", opis='" + opis + '\'' +
+                ", ocena=" + ocena +
+                ", autor=" + autor +
+                ", zanrovi=" + zanrovi +
+                '}';
+    }
 }
