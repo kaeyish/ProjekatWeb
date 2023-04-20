@@ -10,18 +10,18 @@ public class Recenzija implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column (nullable = false)
     private int ocena;
 
-    @Column
+    @Column(nullable = false)
     private String tekst;
 
     @Column
     private Date datum;
 
     @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn (name = "korisnik_id")
-    private Korisnik korisnik;
+    @JoinColumn (name = "citalac_id")
+    private Citalac citalac;
 
     public Long getId() {
         return id;
@@ -56,11 +56,11 @@ public class Recenzija implements Serializable {
     }
 
     public Korisnik getKorisnik() {
-        return korisnik;
+        return citalac;
     }
 
-    public void setKorisnik(Korisnik korisnik) {
-        this.korisnik = korisnik;
+    public void setKorisnik(Citalac citalac) {
+        this.citalac = citalac;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Recenzija implements Serializable {
                 ", ocena=" + ocena +
                 ", tekst='" + tekst + '\'' +
                 ", datum=" + datum +
-                ", korisnik=" + korisnik +
+                ", citalac=" + citalac +
                 '}';
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Date;
+
 @SpringBootApplication
 public class ProjekatWebApplication implements CommandLineRunner {
 
@@ -20,6 +22,8 @@ public class ProjekatWebApplication implements CommandLineRunner {
 		zahtev.setEmail("email@yahoo.com");
 		zahtev.setPoruka("zahtev u toku");
 		zahtev.setStatus(Status.ODOBREN);
+		zahtev.setTelefon("+1 234 567 89");
+		zahtev.setDatum(new Date(121,1,1));
 		this.zahtevRepository.save(zahtev);
 
 		//System.out.println(zahtev.getStatus());

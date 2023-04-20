@@ -12,7 +12,7 @@ public class Polica implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String naziv;
 
     @Column

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-;
 
 @Entity
 public class ZahtevAktivacija implements Serializable {
@@ -13,13 +12,13 @@ public class ZahtevAktivacija implements Serializable {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private Status status;
 
-    @Column
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column
+    @Column (unique = true)
     private String telefon;
 
     @Column
