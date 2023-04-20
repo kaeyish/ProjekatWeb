@@ -27,6 +27,9 @@ public class ZahtevAktivacija implements Serializable {
     @Column
     private Date datum;
 
+    @OneToOne
+    private Autor autor;
+
     @Override
     public String toString() {
 
