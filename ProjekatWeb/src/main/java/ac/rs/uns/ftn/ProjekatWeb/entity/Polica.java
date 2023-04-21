@@ -20,12 +20,12 @@ public class Polica implements Serializable {
 
     @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable (
-            name = "knjige_na_polici",  //????
+            name = "stavke_na_polici",  //????
             joinColumns = @JoinColumn(
                     name = "polica_id", referencedColumnName = "id"
             ),
             inverseJoinColumns = @JoinColumn(
-                    name = "knjiga_id", referencedColumnName = "id"
+                    name = "stavka_id", referencedColumnName = "id"
             )
     )
     private Set<StavkaPolice> stavkePolice = new HashSet<>();
