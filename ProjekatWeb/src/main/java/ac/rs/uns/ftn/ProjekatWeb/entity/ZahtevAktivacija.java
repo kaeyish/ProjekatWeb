@@ -27,7 +27,8 @@ public class ZahtevAktivacija implements Serializable {
     @Column
     private Date datum;
 
-    @OneToOne
+    @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn (name = "autor_id")
     private Autor autor;
 
     @Override

@@ -19,7 +19,7 @@ public class Knjiga implements Serializable {
     private String naslovnaFotografija;
 
     @Column(unique = true)
-    private int isbn;
+    private String isbn;
 
     @Column
     private Date datumObjavljivanja;
@@ -37,13 +37,8 @@ public class Knjiga implements Serializable {
     @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Autor autor;
 
-    //dodati zanr -> knjiga moze imati vise zanrova
-    @ManyToMany
-    @JoinTable (name = "zanrovi_knjiga",
-            joinColumns = @JoinColumn(name = "knjiga_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn (name = "zanr_id", referencedColumnName = "id"))
-    private Set <Zanr> zanrovi = new HashSet<>();
-
+    @OneToOne
+    public Zanr zanr;
 
     public Long getId() {
         return id;
@@ -69,11 +64,11 @@ public class Knjiga implements Serializable {
         this.naslovnaFotografija = naslovnaFotografija;
     }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -117,12 +112,12 @@ public class Knjiga implements Serializable {
         this.autor = autor;
     }
 
-    public Set<Zanr> getZanrovi() {
-        return zanrovi;
+    public Zanr getZanr() {
+        return zanr;
     }
 
-    public void setZanrovi(Set<Zanr> zanrovi) {
-        this.zanrovi = zanrovi;
+    public void setZanr(Zanr zanr) {
+        this.zanr = zanr;
     }
 
     @Override
@@ -137,7 +132,7 @@ public class Knjiga implements Serializable {
                 ", opis='" + opis + '\'' +
                 ", ocena=" + ocena +
                 ", autor=" + autor +
-                ", zanrovi=" + zanrovi +
+                ", zanr=" + zanr +
                 '}';
     }
 }

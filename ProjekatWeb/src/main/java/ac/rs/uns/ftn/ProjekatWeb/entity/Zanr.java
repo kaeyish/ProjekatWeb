@@ -15,10 +15,6 @@ public class Zanr implements Serializable {
     @Column
     private String naziv;
 
-    //knjige
-    @ManyToMany (mappedBy = "zanrovi")
-    private Set <Knjiga> knjige = new HashSet<>();
-
     public Long getId() {
         return id;
     }
@@ -35,20 +31,11 @@ public class Zanr implements Serializable {
         this.naziv = naziv;
     }
 
-    public Set<Knjiga> getKnjige() {
-        return knjige;
-    }
-
-    public void setKnjige(Set<Knjiga> knjige) {
-        this.knjige = knjige;
-    }
-
     @Override
     public String toString() {
         return "Zanr{" +
                 "id=" + id +
                 ", naziv='" + naziv + '\'' +
-                ", knjige=" + knjige +
                 '}';
     }
 }

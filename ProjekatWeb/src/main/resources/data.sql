@@ -13,13 +13,10 @@ INSERT INTO ZANR(naziv)VALUES ('naucna fantastika');
 INSERT INTO ZANR(naziv)VALUES ('triler');
 INSERT INTO ZANR(naziv)VALUES ('romantika');
 
-INSERT INTO ZANROVI_KNJIGA (zanr_id, knjiga_id) VALUES (1,1);
-
 INSERT INTO POLICA (naziv, primarna) VALUES ('Want to read', true);
 INSERT INTO POLICA (naziv, primarna) VALUES ('Read', true);
 INSERT INTO POLICA (naziv, primarna) VALUES ('Currently reading', true);
 INSERT INTO POLICA (naziv, primarna) VALUES ('Books that made me cry', false);
-
 
 INSERT INTO RECENZIJA (ocena, tekst, datum, citalac_id) VALUES ( 5, 'Ovde ide tekst recenzije.', '2021-11-20', 2);
 

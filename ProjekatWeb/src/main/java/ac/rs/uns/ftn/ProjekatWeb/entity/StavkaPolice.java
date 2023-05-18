@@ -9,7 +9,8 @@ public class StavkaPolice implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL) //manytoone
+    @JoinColumn (name = "knjiga_id")
     private Knjiga knjiga;
 
     @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
