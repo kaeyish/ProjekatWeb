@@ -1,6 +1,6 @@
 package ac.rs.uns.ftn.ProjekatWeb.service;
 
-        import ac.rs.uns.ftn.ProjekatWeb.entity.ZahtevAktivacija;
+import ac.rs.uns.ftn.ProjekatWeb.entity.ZahtevAktivacija;
         import ac.rs.uns.ftn.ProjekatWeb.repository.ZahtevAktivacijaRepository;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Service;

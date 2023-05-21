@@ -67,6 +67,15 @@ public class Polica implements Serializable {
         this.citalac = citalac;
     }
 
+    public Set<StavkaPolice> getStavkePolice() {
+        return stavkePolice;
+    }
+
+    public void setStavkePolice(Set<StavkaPolice> stavkePolice) {
+        this.stavkePolice = stavkePolice;
+    }
+
+
     @Override
     public String toString() {
         return "Polica{" +

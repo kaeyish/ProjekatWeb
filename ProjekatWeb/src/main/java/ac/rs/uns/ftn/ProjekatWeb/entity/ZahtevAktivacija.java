@@ -92,4 +92,12 @@ public class ZahtevAktivacija implements Serializable {
     public void setDatum(Date datum) {
         this.datum = datum;
     }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
 }

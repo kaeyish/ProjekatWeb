@@ -16,7 +16,6 @@ public class ZanrService {
 
     public Zanr findOne (Long id){
         Optional<Zanr> foundZanr = zanrRepository.findById(id);
-
         if (foundZanr.isPresent())
             return foundZanr.get();
         return null;
