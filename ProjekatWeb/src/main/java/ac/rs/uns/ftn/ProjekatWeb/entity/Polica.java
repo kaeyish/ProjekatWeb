@@ -34,6 +34,10 @@ public class Polica implements Serializable {
     @JoinColumn (name = "citalac_id")
     private Citalac citalac;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn (name = "autor_id")
+    private Autor autor;
+
 
     public Long getId() {
         return id;
@@ -67,12 +71,31 @@ public class Polica implements Serializable {
         this.citalac = citalac;
     }
 
+    public Set<StavkaPolice> getStavkePolice() {
+        return stavkePolice;
+    }
+
+    public void setStavkePolice(Set<StavkaPolice> stavkePolice) {
+        this.stavkePolice = stavkePolice;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
     @Override
     public String toString() {
         return "Polica{" +
                 "id=" + id +
                 ", naziv='" + naziv + '\'' +
                 ", primarna=" + primarna +
+                ", stavkePolice=" + stavkePolice +
+                ", citalac=" + citalac +
+                ", autor=" + autor +
                 '}';
     }
 }
