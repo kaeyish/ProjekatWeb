@@ -23,4 +23,6 @@ public class PolicaService {
 
     public List<Polica> findAll (){return policaRepository.findAll();}
 
+
+
 }

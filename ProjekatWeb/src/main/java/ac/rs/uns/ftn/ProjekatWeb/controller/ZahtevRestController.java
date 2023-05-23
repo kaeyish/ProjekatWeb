@@ -34,8 +34,8 @@ public class ZahtevRestController {
     }
 
     @GetMapping("/api/zahtevi/{id}")
-    public ZahtevAktivacija getZagtev(@PathVariable (name = "id") Long id, HttpSession session){
-       // ZahtevAktivacija zahtevAktivacija = (ZahtevAktivacija) session.getAttribute() ??
+    public ZahtevAktivacija getZahtev(@PathVariable (name = "id") Long id, HttpSession session){
+       //ZahtevAktivacija zahtevAktivacija = (ZahtevAktivacija) session.getAttribute();
         return zahtevAktivacijaService.findOne(id);
     }
 
