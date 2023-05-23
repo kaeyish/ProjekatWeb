@@ -10,10 +10,9 @@ public class Autor extends Korisnik {
     @Column
     private boolean aktivnost;
 
-    //lista knjiga
+    //spisak knjiga
     @OneToMany (mappedBy = "autor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set <Knjiga> knjige = new HashSet<>();
-
 
     public boolean isAktivnost() {
         return aktivnost;
