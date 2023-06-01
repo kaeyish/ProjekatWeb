@@ -30,9 +30,10 @@ public class Polica implements Serializable {
     )
     private Set<StavkaPolice> stavkePolice = new HashSet<>();
 
+    //povezivanje sa policom korisnika
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn (name = "citalac_id")
-    private Citalac citalac;
+    @JoinColumn (name = "korisnik_id")
+    private Korisnik korisnik;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn (name = "autor_id")
@@ -63,12 +64,20 @@ public class Polica implements Serializable {
         this.primarna = primarna;
     }
 
-    public Citalac getCitalac() {
-        return citalac;
+    public Set<StavkaPolice> getStavkePolice() {
+        return stavkePolice;
     }
 
-    public void setCitalac(Citalac citalac) {
-        this.citalac = citalac;
+    public void setStavkePolice(Set<StavkaPolice> stavkePolice) {
+        this.stavkePolice = stavkePolice;
+    }
+
+    public Korisnik getKorisnik() {
+        return korisnik;
+    }
+
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
     }
 
     public Set<StavkaPolice> getStavkePolice() {
@@ -78,7 +87,6 @@ public class Polica implements Serializable {
     public void setStavkePolice(Set<StavkaPolice> stavkePolice) {
         this.stavkePolice = stavkePolice;
     }
-
 
     public Autor getAutor() {
         return autor;
@@ -95,8 +103,7 @@ public class Polica implements Serializable {
                 ", naziv='" + naziv + '\'' +
                 ", primarna=" + primarna +
                 ", stavkePolice=" + stavkePolice +
-                ", citalac=" + citalac +
-                ", autor=" + autor +
+                ", korisnik=" + korisnik +
                 '}';
     }
 }

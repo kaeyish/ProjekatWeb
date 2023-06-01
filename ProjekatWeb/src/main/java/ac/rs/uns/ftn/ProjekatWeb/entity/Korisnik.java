@@ -1,11 +1,15 @@
 package ac.rs.uns.ftn.ProjekatWeb.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@MappedSuperclass
-public abstract class Korisnik implements Serializable {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Entity
+public class Korisnik implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -33,6 +37,38 @@ public abstract class Korisnik implements Serializable {
 
     @Column
     private String opis;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Uloga uloga;
+
+    //police
+    @OneToOne
+    private Polica wantToRead;
+
+    @OneToOne
+    private Polica currentlyReading;
+
+    @OneToOne
+    private Polica read;
+
+    @OneToMany (mappedBy = "korisnik", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set <Polica> ostalePolice = new HashSet<>();
+
+
+    public Korisnik() {
+    }
+
+    public Korisnik(String ime, String prezime, String korisnickoIme, String mail, String lozinka, Date datumRodjenja, String profilnaSlika, String opis) {
+        this.ime = ime;
+        this.prezime = prezime;
+        this.korisnickoIme = korisnickoIme;
+        this.mail = mail;
+        this.lozinka = lozinka;
+        this.datumRodjenja = datumRodjenja;
+        this.profilnaSlika = profilnaSlika;
+        this.opis = opis;
+    }
 
     public Long getId() {
         return id;
@@ -66,11 +102,11 @@ public abstract class Korisnik implements Serializable {
         this.korisnickoIme = korisnickoIme;
     }
 
-    public String getEmail() {
+    public String getMail() {
         return mail;
     }
 
-    public void setEmail(String mail) {
+    public void setMail(String mail) {
         this.mail = mail;
     }
 
@@ -106,6 +142,38 @@ public abstract class Korisnik implements Serializable {
         this.opis = opis;
     }
 
+    public Polica getWantToRead() {
+        return wantToRead;
+    }
+
+    public void setWantToRead(Polica wantToRead) {
+        this.wantToRead = wantToRead;
+    }
+
+    public Polica getCurrentlyReading() {
+        return currentlyReading;
+    }
+
+    public void setCurrentlyReading(Polica currentlyReading) {
+        this.currentlyReading = currentlyReading;
+    }
+
+    public Polica getRead() {
+        return read;
+    }
+
+    public void setRead(Polica read) {
+        this.read = read;
+    }
+
+    public Set<Polica> getOstalePolice() {
+        return ostalePolice;
+    }
+
+    public void setOstalePolice(Set<Polica> ostalePolice) {
+        this.ostalePolice = ostalePolice;
+    }
+
     @Override
     public String toString() {
         return "Korisnik{" +
@@ -118,6 +186,10 @@ public abstract class Korisnik implements Serializable {
                 ", datumRodjenja=" + datumRodjenja +
                 ", profilnaSlika='" + profilnaSlika + '\'' +
                 ", opis='" + opis + '\'' +
+                ", wantToRead=" + wantToRead +
+                ", currentlyReading=" + currentlyReading +
+                ", read=" + read +
+                ", ostalePolice=" + ostalePolice +
                 '}';
     }
 }

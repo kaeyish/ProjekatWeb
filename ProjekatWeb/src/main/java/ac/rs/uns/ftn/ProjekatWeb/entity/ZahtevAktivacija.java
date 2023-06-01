@@ -13,6 +13,7 @@ public class ZahtevAktivacija implements Serializable {
     private Long id;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(unique = true, nullable = false)
@@ -33,15 +34,14 @@ public class ZahtevAktivacija implements Serializable {
 
     @Override
     public String toString() {
-
-        
         return "ZahtevAktivacija{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
                 ", status=" + status +
+                ", email='" + email + '\'' +
                 ", telefon='" + telefon + '\'' +
                 ", poruka='" + poruka + '\'' +
                 ", datum=" + datum +
+                ", autor=" + autor +
                 '}';
     }
 
