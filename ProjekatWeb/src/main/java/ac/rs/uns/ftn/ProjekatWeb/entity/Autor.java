@@ -10,23 +10,9 @@ public class Autor extends Korisnik {
     @Column
     private boolean aktivnost;
 
-    //lista knjiga
+    //spisak knjiga
     @OneToMany (mappedBy = "autor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set <Knjiga> knjige = new HashSet<>();
-
-    //police
-    @OneToOne
-    private Polica wantToRead;
-
-    @OneToOne
-    private Polica currentlyReading;
-
-    @OneToOne
-    private Polica read;
-
-    @OneToMany (mappedBy = "autor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set <Polica> ostalePolice = new HashSet<>();
-
 
     public boolean isAktivnost() {
         return aktivnost;
@@ -42,38 +28,6 @@ public class Autor extends Korisnik {
 
     public void setKnjige(Set<Knjiga> knjige) {
         this.knjige = knjige;
-    }
-
-    public Polica getWantToRead() {
-        return wantToRead;
-    }
-
-    public void setWantToRead(Polica wantToRead) {
-        this.wantToRead = wantToRead;
-    }
-
-    public Polica getCurrentlyReading() {
-        return currentlyReading;
-    }
-
-    public void setCurrentlyReading(Polica currentlyReading) {
-        this.currentlyReading = currentlyReading;
-    }
-
-    public Polica getRead() {
-        return read;
-    }
-
-    public void setRead(Polica read) {
-        this.read = read;
-    }
-
-    public Set<Polica> getOstalePolice() {
-        return ostalePolice;
-    }
-
-    public void setOstalePolice(Set<Polica> ostalePolice) {
-        this.ostalePolice = ostalePolice;
     }
 
     @Override
