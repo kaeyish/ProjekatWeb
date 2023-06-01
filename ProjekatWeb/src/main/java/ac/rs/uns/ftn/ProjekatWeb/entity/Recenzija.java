@@ -20,8 +20,8 @@ public class Recenzija implements Serializable {
     private Date datum;
 
     @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn (name = "citalac_id")
-    private Citalac citalac;
+    @JoinColumn (name = "korisnik_id")
+    private Korisnik korisnik;
 
     public Long getId() {
         return id;
@@ -56,11 +56,11 @@ public class Recenzija implements Serializable {
     }
 
     public Korisnik getKorisnik() {
-        return citalac;
+        return korisnik;
     }
 
-    public void setKorisnik(Citalac citalac) {
-        this.citalac = citalac;
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Recenzija implements Serializable {
                 ", ocena=" + ocena +
                 ", tekst='" + tekst + '\'' +
                 ", datum=" + datum +
-                ", citalac=" + citalac +
+                ", korisnik=" + korisnik +
                 '}';
     }
 }
