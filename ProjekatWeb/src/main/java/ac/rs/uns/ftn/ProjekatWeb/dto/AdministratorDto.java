@@ -9,7 +9,7 @@ public class AdministratorDto {
     private String ime;
     private String prezime;
     private String korisnickoIme;
-    private String mail;
+    private String email;
     private String lozinka;
     private Date datumRodjenja;
     private String profilnaSlika;
@@ -23,7 +23,7 @@ public class AdministratorDto {
         this.ime = ime;
         this.prezime = prezime;
         this.korisnickoIme = korisnickoIme;
-        this.mail = mail;
+        this.email = mail;
         this.lozinka = lozinka;
         this.datumRodjenja = datumRodjenja;
         this.profilnaSlika = profilnaSlika;
@@ -34,7 +34,7 @@ public class AdministratorDto {
         this.ime = administrator.getIme();
         this.prezime = administrator.getPrezime();
         this.korisnickoIme = administrator.getKorisnickoIme();
-        this.mail = administrator.getEmail();
+        this.email = administrator.getEmail();
         this.lozinka = administrator.getLozinka();
         this.datumRodjenja = administrator.getDatumRodjenja();
         this.profilnaSlika = administrator.getProfilnaSlika();
@@ -73,12 +73,12 @@ public class AdministratorDto {
         this.korisnickoIme = korisnickoIme;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String mail) {
+        this.email = mail;
     }
 
     public String getLozinka() {

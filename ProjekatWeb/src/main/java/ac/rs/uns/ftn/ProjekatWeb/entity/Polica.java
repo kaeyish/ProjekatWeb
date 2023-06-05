@@ -35,10 +35,13 @@ public class Polica implements Serializable {
     @JoinColumn (name = "korisnik_id")
     private Korisnik korisnik;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn (name = "autor_id")
-    private Autor autor;
+    public Polica() {
+    }
 
+    public Polica(String naziv, boolean primarna) {
+        this.naziv = naziv;
+        this.primarna = primarna;
+    }
 
     public Long getId() {
         return id;
@@ -78,22 +81,6 @@ public class Polica implements Serializable {
 
     public void setKorisnik(Korisnik korisnik) {
         this.korisnik = korisnik;
-    }
-
-    public Set<StavkaPolice> getStavkePolice() {
-        return stavkePolice;
-    }
-
-    public void setStavkePolice(Set<StavkaPolice> stavkePolice) {
-        this.stavkePolice = stavkePolice;
-    }
-
-    public Autor getAutor() {
-        return autor;
-    }
-
-    public void setAutor(Autor autor) {
-        this.autor = autor;
     }
 
     @Override

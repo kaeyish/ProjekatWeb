@@ -1,5 +1,6 @@
 package ac.rs.uns.ftn.ProjekatWeb.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -33,12 +34,26 @@ public class Knjiga implements Serializable {
     @Column
     private float ocena;
 
+    @OneToOne
+    private Zanr zanr;
+
     //povezivanje sa autorom
     @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Autor autor;
 
-    @OneToOne
-    public Zanr zanr;
+    public Knjiga() {
+    }
+
+    public Knjiga(String naslov, String naslovnaFotografija, String isbn, Date datumObjavljivanja, int brojStrana, String opis, float ocena, Zanr zanr) {
+        this.naslov = naslov;
+        this.naslovnaFotografija = naslovnaFotografija;
+        this.isbn = isbn;
+        this.datumObjavljivanja = datumObjavljivanja;
+        this.brojStrana = brojStrana;
+        this.opis = opis;
+        this.ocena = ocena;
+        this.zanr = zanr;
+    }
 
     public Long getId() {
         return id;

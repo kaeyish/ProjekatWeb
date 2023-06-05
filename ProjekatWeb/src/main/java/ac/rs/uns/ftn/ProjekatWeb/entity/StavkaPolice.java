@@ -16,6 +16,15 @@ public class StavkaPolice implements Serializable {
     @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Recenzija recenzija;
 
+    public StavkaPolice() {
+
+    }
+
+    public StavkaPolice(Knjiga knjiga, Recenzija recenzija) {
+        this.knjiga = knjiga;
+        this.recenzija = recenzija;
+    }
+
     public Long getId() {
         return id;
     }
