@@ -64,14 +64,6 @@ public class Polica implements Serializable {
         this.primarna = primarna;
     }
 
-    public Set<StavkaPolice> getStavkePolice() {
-        return stavkePolice;
-    }
-
-    public void setStavkePolice(Set<StavkaPolice> stavkePolice) {
-        this.stavkePolice = stavkePolice;
-    }
-
     public Korisnik getKorisnik() {
         return korisnik;
     }

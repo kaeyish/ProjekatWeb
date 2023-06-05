@@ -28,7 +28,7 @@ public class ZahtevAktivacijaService {
 
     public List<ZahtevAktivacija> findAll () {return zahtevAktivacijaRepository.findAll();}
 
-
+    public ZahtevAktivacija saveZahtev(ZahtevAktivacija zahtevAktivacija) {return zahtevAktivacijaRepository.save(zahtevAktivacija);}
 
 
 

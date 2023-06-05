@@ -34,10 +34,7 @@ public class StavkaRestController {
 
     @GetMapping("/api/stavke_police/{id}")
     public StavkaPolice getStavke(@PathVariable(name = "id") Long id, HttpSession session){
-/* ????        StavkaPolice stavkaPolice = (StavkaPolice) session.getAttribute("stavke");
-        System.out.println(s.getFirstname());
-        session.invalidate();
-  */      return stavkaService.findOne(id);
+        return stavkaService.findOne(id);
     }
 
 }

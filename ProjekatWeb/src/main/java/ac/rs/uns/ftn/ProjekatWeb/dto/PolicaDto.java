@@ -1,6 +1,7 @@
 package ac.rs.uns.ftn.ProjekatWeb.dto;
 
 import ac.rs.uns.ftn.ProjekatWeb.entity.Citalac;
+import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Polica;
 import ac.rs.uns.ftn.ProjekatWeb.entity.StavkaPolice;
 import jakarta.persistence.Column;
@@ -16,7 +17,7 @@ public class PolicaDto {
 
     private boolean primarna;
 
-    private Citalac citalac;
+    private Korisnik korisnik;
 
     public Long getId() {
         return id;
@@ -42,12 +43,12 @@ public class PolicaDto {
         this.primarna = primarna;
     }
 
-    public Citalac getCitalac() {
-        return citalac;
+    public Korisnik getKorisnik() {
+        return korisnik;
     }
 
-    public void setCitalac(Citalac citalac) {
-        this.citalac = citalac;
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
     }
 
     public Set<StavkaPolice> getStavkePolice() {
@@ -63,11 +64,11 @@ public class PolicaDto {
     public PolicaDto() {
     }
 
-    public PolicaDto(Long id, String naziv, boolean primarna, Citalac citalac, Set<StavkaPolice> stavkePolice) {
+    public PolicaDto(Long id, String naziv, boolean primarna, Korisnik korisnik, Set<StavkaPolice> stavkePolice) {
         this.id = id;
         this.naziv = naziv;
         this.primarna = primarna;
-        this.citalac = citalac;
+        this.korisnik = korisnik;
         this.stavkePolice = stavkePolice;
     }
 
@@ -75,7 +76,7 @@ public class PolicaDto {
         this.id = polica.getId();
         this.naziv = polica.getNaziv();
         this.primarna = polica.isPrimarna();
-        this.citalac = polica.getCitalac();
+        this.korisnik = polica.getKorisnik();
         this.stavkePolice = polica.getStavkePolice();
     }
 }

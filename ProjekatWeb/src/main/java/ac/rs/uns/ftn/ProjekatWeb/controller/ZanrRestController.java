@@ -19,7 +19,7 @@ public class ZanrRestController {
     private ZanrService zanrService;
 
     @GetMapping("/api/zanrovi")
-    public ResponseEntity<List<ZanrDto>> getZanrove(HttpSession session){
+    public ResponseEntity<List<ZanrDto>> getZanrove(){
        List<Zanr> zanrList = zanrService.findAll();
 
         List<ZanrDto> dtos = new ArrayList<>();

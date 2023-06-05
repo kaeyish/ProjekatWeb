@@ -15,7 +15,7 @@ public class StavkaDto {
     }
 
     public StavkaDto(StavkaPolice stavka){
-        this.id = stavka.getId();;
+        this.id = stavka.getId();
         this.knjiga = stavka.getKnjiga();
         this.recenzija = stavka.getRecenzija();
     }

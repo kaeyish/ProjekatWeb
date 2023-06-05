@@ -13,11 +13,11 @@ import java.util.Date;
 @SpringBootApplication
 public class ProjekatWebApplication implements CommandLineRunner {
 
-	@Autowired
-	private ZahtevAktivacijaRepository zahtevRepository;
+    @Autowired
+    private ZahtevAktivacijaRepository zahtevRepository;
 
-	@Override
-	public void run (String... args){
+    @Override
+    public void run (String... args){
 //		ZahtevAktivacija zahtev = new ZahtevAktivacija();
 //		zahtev.setEmail("email@yahoo.com");
 //		zahtev.setPoruka("zahtev u toku");
@@ -26,11 +26,11 @@ public class ProjekatWebApplication implements CommandLineRunner {
 //		zahtev.setDatum(new Date(121,1,1));
 //		this.zahtevRepository.save(zahtev);
 
-		//System.out.println(zahtev.getStatus());
+        //System.out.println(zahtev.getStatus());
 
-	}
-	public static void main(String[] args) {
-		SpringApplication.run(ProjekatWebApplication.class, args);
-	}
+    }
+    public static void main(String[] args) {
+        SpringApplication.run(ProjekatWebApplication.class, args);
+    }
 
 }

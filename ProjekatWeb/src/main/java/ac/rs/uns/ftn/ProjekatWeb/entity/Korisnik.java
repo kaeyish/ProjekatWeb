@@ -24,7 +24,7 @@ public class Korisnik implements Serializable {
     private String korisnickoIme;
 
     @Column (unique = true)
-    private String mail;
+    private String email;
 
     @Column
     private String lozinka;
@@ -59,11 +59,11 @@ public class Korisnik implements Serializable {
     public Korisnik() {
     }
 
-    public Korisnik(String ime, String prezime, String korisnickoIme, String mail, String lozinka, Date datumRodjenja, String profilnaSlika, String opis) {
+    public Korisnik(String ime, String prezime, String korisnickoIme, String email, String lozinka, Date datumRodjenja, String profilnaSlika, String opis) {
         this.ime = ime;
         this.prezime = prezime;
         this.korisnickoIme = korisnickoIme;
-        this.mail = mail;
+        this.email = email;
         this.lozinka = lozinka;
         this.datumRodjenja = datumRodjenja;
         this.profilnaSlika = profilnaSlika;
@@ -102,12 +102,12 @@ public class Korisnik implements Serializable {
         this.korisnickoIme = korisnickoIme;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String mail) {
+        this.email = email;
     }
 
     public String getLozinka() {
@@ -174,6 +174,14 @@ public class Korisnik implements Serializable {
         this.ostalePolice = ostalePolice;
     }
 
+    public Uloga getUloga() {
+        return uloga;
+    }
+
+    public void setUloga(Uloga uloga) {
+        this.uloga = uloga;
+    }
+
     @Override
     public String toString() {
         return "Korisnik{" +
@@ -181,7 +189,7 @@ public class Korisnik implements Serializable {
                 ", ime='" + ime + '\'' +
                 ", prezime='" + prezime + '\'' +
                 ", korisnickoIme='" + korisnickoIme + '\'' +
-                ", mail='" + mail + '\'' +
+                ", mail='" + email + '\'' +
                 ", lozinka='" + lozinka + '\'' +
                 ", datumRodjenja=" + datumRodjenja +
                 ", profilnaSlika='" + profilnaSlika + '\'' +

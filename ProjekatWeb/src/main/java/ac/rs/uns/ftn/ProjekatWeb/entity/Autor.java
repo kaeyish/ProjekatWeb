@@ -35,10 +35,6 @@ public class Autor extends Korisnik {
         return "Autor{" +
                 "aktivnost=" + aktivnost +
                 ", knjige=" + knjige +
-                ", wantToRead=" + wantToRead +
-                ", currentlyReading=" + currentlyReading +
-                ", read=" + read +
-                ", ostalePolice=" + ostalePolice +
                 '}';
     }
 }

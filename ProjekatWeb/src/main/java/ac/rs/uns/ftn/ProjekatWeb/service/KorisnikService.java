@@ -24,4 +24,18 @@ public class KorisnikService {
     public List<Korisnik> findAll(){
         return korisnikRepository.findAll();
     }
+
+    public Korisnik save (Korisnik korisnik) {return korisnikRepository.save(korisnik);}
+
+    public Korisnik login (String email, String password){
+
+        if (email != null && password != null){
+            Korisnik loggedUser = korisnikRepository.findByEmail(email);
+            if (loggedUser.getLozinka()==password)
+                return loggedUser;
+        }
+
+        return null;
+    }
+
 }
