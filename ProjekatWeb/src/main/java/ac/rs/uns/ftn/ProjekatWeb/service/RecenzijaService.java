@@ -25,4 +25,11 @@ public class RecenzijaService {
     public List<Recenzija> findAll (){return recenzijaRepository.findAll();}
 
 
+    public List<Recenzija> findAllByKnjigaId(Long knjiga_id) {
+        return recenzijaRepository.findAllByKnjigaId(knjiga_id);
+    }
+
+    public void save(Recenzija recenzija) { recenzijaRepository.save(recenzija);}
+
+    public void delete(Recenzija recenzija) {recenzijaRepository.delete(recenzija);}
 }

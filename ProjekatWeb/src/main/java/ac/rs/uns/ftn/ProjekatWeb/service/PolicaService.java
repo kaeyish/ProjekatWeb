@@ -2,6 +2,7 @@ package ac.rs.uns.ftn.ProjekatWeb.service;
 
 import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Polica;
+import ac.rs.uns.ftn.ProjekatWeb.entity.StavkaPolice;
 import ac.rs.uns.ftn.ProjekatWeb.repository.PolicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,4 +41,7 @@ public class PolicaService {
 
     public List<Polica> findAllByKorisnik (Korisnik korisnik) {return findAllByKorisnik(korisnik);}
 
+    public List<Polica> findAllByKorisnikId(Long korisnikId) {return findAllByKorisnikId(korisnikId);}
+
+    public List<Polica> findALlByStavkaPolice(StavkaPolice stavkaPolice) {return policaRepository.findALlByStavkaPolice(stavkaPolice);}
 }

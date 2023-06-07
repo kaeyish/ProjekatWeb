@@ -27,8 +27,34 @@ public class PolicaRestController {
     @Autowired
     private KorisnikService korisnikService;
 
+    @GetMapping("/*/korisnik/{id}/police")
+    public ResponseEntity<List<PolicaDto>> getPolice(@PathVariable (name = "korisnik_id") Long korisnik_id){
 
-    @PostMapping ("/api/nova_polica")
+        List<Polica> police = policaService.findAllByKorisnikId(korisnik_id);
+
+        List<PolicaDto> dtos = new ArrayList<>();
+
+        for(Polica polica : police){
+            PolicaDto dto = new PolicaDto(polica);
+            dtos.add(dto);
+        }
+        return ResponseEntity.ok(dtos);
+    }
+
+    @GetMapping("/*/police/{id}")
+    public ResponseEntity<PolicaDto> getPolica(@PathVariable(name = "id")Long id){
+        Polica polica = policaService.findOne(id);
+
+        if (polica==null){
+            return new ResponseEntity("Polica ne postoji", HttpStatus.NOT_FOUND);
+        }
+
+        PolicaDto dto = new PolicaDto(polica);
+        return ResponseEntity.ok(dto);
+    }
+
+
+    @PostMapping ("/*/nova_polica")
     public ResponseEntity savePolica (@RequestBody Polica polica, HttpSession session){
         Korisnik loggedUser = (Korisnik) session.getAttribute("Korisnik");
 
@@ -43,8 +69,8 @@ public class PolicaRestController {
         return new ResponseEntity("Uspesno dodavanje police.", HttpStatus.OK);
     }
 
-    @DeleteMapping ("/api/police/{id}")
-    public ResponseEntity<Long> deletePolica (@PathVariable(name = "id") Long id, HttpSession session){
+    @DeleteMapping ("/*/brisanje-police/{id}")
+    public ResponseEntity deletePolica (@PathVariable(name = "id") Long id, HttpSession session){
         Korisnik loggedUser = (Korisnik) session.getAttribute("Korisnik");
 
         if (loggedUser == null){
