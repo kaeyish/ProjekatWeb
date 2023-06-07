@@ -59,7 +59,8 @@ public class Korisnik implements Serializable {
     public Korisnik() {
     }
 
-    public Korisnik(String ime, String prezime, String korisnickoIme, String email, String lozinka, Date datumRodjenja, String profilnaSlika, String opis) {
+
+    public Korisnik(String ime, String prezime, String korisnickoIme, String email, String lozinka, Date datumRodjenja, String profilnaSlika, String opis, Uloga uloga, Polica wantToRead, Polica currentlyReading, Polica read) {
         this.ime = ime;
         this.prezime = prezime;
         this.korisnickoIme = korisnickoIme;
@@ -68,6 +69,10 @@ public class Korisnik implements Serializable {
         this.datumRodjenja = datumRodjenja;
         this.profilnaSlika = profilnaSlika;
         this.opis = opis;
+        this.uloga = uloga;
+        this.wantToRead = wantToRead;
+        this.currentlyReading = currentlyReading;
+        this.read = read;
     }
 
     public Long getId() {
@@ -107,7 +112,7 @@ public class Korisnik implements Serializable {
     }
 
     public void setEmail(String mail) {
-        this.email = email;
+        this.email = mail;
     }
 
     public String getLozinka() {
@@ -142,6 +147,14 @@ public class Korisnik implements Serializable {
         this.opis = opis;
     }
 
+    public Uloga getUloga() {
+        return uloga;
+    }
+
+    public void setUloga(Uloga uloga) {
+        this.uloga = uloga;
+    }
+
     public Polica getWantToRead() {
         return wantToRead;
     }
@@ -174,14 +187,6 @@ public class Korisnik implements Serializable {
         this.ostalePolice = ostalePolice;
     }
 
-    public Uloga getUloga() {
-        return uloga;
-    }
-
-    public void setUloga(Uloga uloga) {
-        this.uloga = uloga;
-    }
-
     @Override
     public String toString() {
         return "Korisnik{" +
@@ -194,6 +199,7 @@ public class Korisnik implements Serializable {
                 ", datumRodjenja=" + datumRodjenja +
                 ", profilnaSlika='" + profilnaSlika + '\'' +
                 ", opis='" + opis + '\'' +
+                ", uloga=" + uloga +
                 ", wantToRead=" + wantToRead +
                 ", currentlyReading=" + currentlyReading +
                 ", read=" + read +

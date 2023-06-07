@@ -32,16 +32,36 @@ public class ZahtevAktivacija implements Serializable {
     @JoinColumn (name = "autor_id")
     private Autor autor;
 
+    public ZahtevAktivacija() {
+    }
+
+    public ZahtevAktivacija(Status status, String email, String telefon, String poruka, Date datum) {
+        this.status = status;
+        this.email = email;
+        this.telefon = telefon;
+        this.poruka = poruka;
+        this.datum = datum;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
     @Override
     public String toString() {
+
+
         return "ZahtevAktivacija{" +
                 "id=" + id +
-                ", status=" + status +
                 ", email='" + email + '\'' +
+                ", status=" + status +
                 ", telefon='" + telefon + '\'' +
                 ", poruka='" + poruka + '\'' +
                 ", datum=" + datum +
-                ", autor=" + autor +
                 '}';
     }
 
@@ -91,13 +111,5 @@ public class ZahtevAktivacija implements Serializable {
 
     public void setDatum(Date datum) {
         this.datum = datum;
-    }
-
-    public Autor getAutor() {
-        return autor;
-    }
-
-    public void setAutor(Autor autor) {
-        this.autor = autor;
     }
 }

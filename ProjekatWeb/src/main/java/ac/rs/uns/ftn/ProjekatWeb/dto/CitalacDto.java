@@ -12,7 +12,7 @@ public class CitalacDto {
     private String ime;
     private String prezime;
     private String korisnickoIme;
-    private String mail;
+    private String email;
     private String lozinka;
     private Date datumRodjenja;
     private String profilnaSlika;
@@ -30,7 +30,7 @@ public class CitalacDto {
         this.ime = ime;
         this.prezime = prezime;
         this.korisnickoIme = korisnickoIme;
-        this.mail = mail;
+        this.email = mail;
         this.lozinka = lozinka;
         this.datumRodjenja = datumRodjenja;
         this.profilnaSlika = profilnaSlika;
@@ -46,7 +46,7 @@ public class CitalacDto {
         this.ime = citalac.getIme();
         this.prezime = citalac.getPrezime();
         this.korisnickoIme = citalac.getKorisnickoIme();
-        this.mail = citalac.getEmail();
+        this.email = citalac.getEmail();
         this.lozinka = citalac.getLozinka();
         this.datumRodjenja = citalac.getDatumRodjenja();
         this.profilnaSlika = citalac.getProfilnaSlika();
@@ -89,12 +89,12 @@ public class CitalacDto {
         this.korisnickoIme = korisnickoIme;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String mail) {
+        this.email = mail;
     }
 
     public String getLozinka() {

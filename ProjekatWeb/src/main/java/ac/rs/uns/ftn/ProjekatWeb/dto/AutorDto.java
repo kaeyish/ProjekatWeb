@@ -13,7 +13,7 @@ public class AutorDto {
     private String ime;
     private String prezime;
     private String korisnickoIme;
-    private String mail;
+    private String email;
     private String lozinka;
     private Date datumRodjenja;
     private String profilnaSlika;
@@ -34,7 +34,7 @@ public class AutorDto {
         this.ime = ime;
         this.prezime = prezime;
         this.korisnickoIme = korisnickoIme;
-        this.mail = mail;
+        this.email = mail;
         this.lozinka = lozinka;
         this.datumRodjenja = datumRodjenja;
         this.profilnaSlika = profilnaSlika;
@@ -52,7 +52,7 @@ public class AutorDto {
         this.ime = autor.getIme();
         this.prezime = autor.getPrezime();
         this.korisnickoIme = autor.getKorisnickoIme();
-        this.mail = autor.getEmail();
+        this.email = autor.getEmail();
         this.lozinka = autor.getLozinka();
         this.datumRodjenja = autor.getDatumRodjenja();
         this.profilnaSlika = autor.getProfilnaSlika();
@@ -97,12 +97,12 @@ public class AutorDto {
         this.korisnickoIme = korisnickoIme;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String mail) {
+        this.email = mail;
     }
 
     public String getLozinka() {
