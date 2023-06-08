@@ -20,8 +20,29 @@ public class KorisnikService {
         }
         return null;
     }
+    // public Optional <Korisnik> findOne(Long id){
+    //    return korisnikRepository.findById(id);
+    //}
 
     public List<Korisnik> findAll(){
         return korisnikRepository.findAll();
     }
+
+    public Korisnik login(String mail, String lozinka){
+        Korisnik korisnik = korisnikRepository.getByEmail(mail);
+        if (korisnik == null || !korisnik.getLozinka().equals(lozinka)){
+            return null;
+        }
+        return korisnik;
+    }
+
+    public Korisnik save(Korisnik korisnik){
+        return korisnikRepository.save(korisnik);
+    }
+
+    public void deleteKorisnik (long id){
+        korisnikRepository.deleteById(id);
+    }
+
+
 }

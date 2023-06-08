@@ -24,5 +24,4 @@ public class AdministratorService {
     public List <Administrator> findAll(){
         return administratorRepository.findAll();
     }
-
 }

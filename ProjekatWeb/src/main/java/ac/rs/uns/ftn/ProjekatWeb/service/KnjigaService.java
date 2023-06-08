@@ -1,28 +1,46 @@
 package ac.rs.uns.ftn.ProjekatWeb.service;
 
+import ac.rs.uns.ftn.ProjekatWeb.entity.Autor;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Knjiga;
+import ac.rs.uns.ftn.ProjekatWeb.entity.Zanr;
 import ac.rs.uns.ftn.ProjekatWeb.repository.KnjigaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class KnjigaService {
     @Autowired
     private KnjigaRepository knjigaRepository;
 
-    public Knjiga findOne(Long id){
-        Optional <Knjiga> foundKnjiga = knjigaRepository.findById(id);
-        if (foundKnjiga.isPresent()){
-            return foundKnjiga.get();
-        }
-        return null;
+    public Optional<Knjiga> finOne(Long id){
+        return knjigaRepository.findById(id);
     }
+
 
     public List <Knjiga> findAll (){
         return knjigaRepository.findAll();
+    }
+
+    public List<Knjiga> findByOcena(double ocena){
+        return  knjigaRepository.findAllByOcena(ocena);
+    }
+
+    public List<Knjiga> findByAutor (Autor autor){
+        return  knjigaRepository.findAllByAutorContaining(autor);
+    }
+
+    public Knjiga save (Knjiga k){return knjigaRepository.save(k);}
+
+    public void deleteKnjiga (long id){knjigaRepository.deleteById(id);}
+
+    public Knjiga findByNaslov(String n){
+        return knjigaRepository.findByNaslov(n);
+    }
+
+    public Knjiga findByZanr(Zanr zanr){
+        return knjigaRepository.findByZanr(zanr);
     }
 
 }

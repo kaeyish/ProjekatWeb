@@ -1,7 +1,7 @@
 package ac.rs.uns.ftn.ProjekatWeb.dto;
 
-import ac.rs.uns.ftn.ProjekatWeb.entity.Autor;
-import ac.rs.uns.ftn.ProjekatWeb.entity.Knjiga;
+import ac.rs.uns.ftn.ProjekatWeb.entity.Citalac;
+import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Polica;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Uloga;
 
@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AutorDto {
+public class KorisnikDto {
     private Long id;
     private String ime;
     private String prezime;
@@ -20,53 +20,48 @@ public class AutorDto {
     private String profilnaSlika;
     private String opis;
     private Uloga uloga;
-    private boolean aktivnost;
-    private Set<Knjiga> knjige = new HashSet<>();
-
     private Polica wantToRead;
     private Polica currentlyReading;
     private Polica read;
     private Set<Polica> ostalePolice = new HashSet<>();
 
-    public AutorDto() {
+    private String novaLozinka;
+
+    public KorisnikDto() {
     }
 
-    public AutorDto(Long id, String ime, String prezime, String korisnickoIme, String mail, String lozinka, Date datumRodjenja, String profilnaSlika, String opis, Uloga uloga,boolean aktivnost, Set<Knjiga> knjige, Polica wantToRead, Polica currentlyReading, Polica read, Set<Polica> ostalePolice) {
+    public KorisnikDto(Long id, String ime, String prezime, String korisnickoIme, String email, String lozinka, Date datumRodjenja, String profilnaSlika, String opis, Uloga uloga, Polica wantToRead, Polica currentlyReading, Polica read, Set<Polica> ostalePolice) {
         this.id = id;
         this.ime = ime;
         this.prezime = prezime;
         this.korisnickoIme = korisnickoIme;
-        this.email = mail;
+        this.email = email;
         this.lozinka = lozinka;
         this.datumRodjenja = datumRodjenja;
         this.profilnaSlika = profilnaSlika;
         this.opis = opis;
         this.uloga = uloga;
-        this.aktivnost = aktivnost;
-        this.knjige = knjige;
         this.wantToRead = wantToRead;
         this.currentlyReading = currentlyReading;
         this.read = read;
         this.ostalePolice = ostalePolice;
     }
 
-    public AutorDto(Autor autor) {
-        this.id = autor.getId();
-        this.ime = autor.getIme();
-        this.prezime = autor.getPrezime();
-        this.korisnickoIme = autor.getKorisnickoIme();
-        this.email = autor.getEmail();
-        this.lozinka = autor.getLozinka();
-        this.datumRodjenja = autor.getDatumRodjenja();
-        this.profilnaSlika = autor.getProfilnaSlika();
-        this.opis = autor.getOpis();
-        this.uloga = autor.getUloga();
-        this.aktivnost = autor.isAktivnost();
-        this.knjige = autor.getKnjige();
-        this.wantToRead = autor.getWantToRead();
-        this.currentlyReading = autor.getCurrentlyReading();
-        this.read = autor.getRead();
-        this.ostalePolice = autor.getOstalePolice();
+    public KorisnikDto (Korisnik  korisnik){
+        this.id = korisnik.getId();
+        this.ime = korisnik.getIme();
+        this.prezime = korisnik.getPrezime();
+        this.korisnickoIme = korisnik.getKorisnickoIme();
+        this.email = korisnik.getEmail();
+        this.lozinka = korisnik.getLozinka();
+        this.datumRodjenja = korisnik.getDatumRodjenja();
+        this.profilnaSlika = korisnik.getProfilnaSlika();
+        this.opis = korisnik.getOpis();
+        this.uloga = korisnik.getUloga();
+        this.wantToRead = korisnik.getWantToRead();
+        this.currentlyReading = korisnik.getCurrentlyReading();
+        this.read = korisnik.getRead();
+        this.ostalePolice = korisnik.getOstalePolice();
     }
 
     public Long getId() {
@@ -141,29 +136,9 @@ public class AutorDto {
         this.opis = opis;
     }
 
-    public Uloga getUloga() {
-        return uloga;
-    }
+    public Uloga getUloga() {return uloga;}
 
-    public void setUloga(Uloga uloga) {
-        this.uloga = uloga;
-    }
-
-    public boolean isAktivnost() {
-        return aktivnost;
-    }
-
-    public void setAktivnost(boolean aktivnost) {
-        this.aktivnost = aktivnost;
-    }
-
-    public Set<Knjiga> getKnjige() {
-        return knjige;
-    }
-
-    public void setKnjige(Set<Knjiga> knjige) {
-        this.knjige = knjige;
-    }
+    public void setUloga(Uloga uloga) {this.uloga = uloga;}
 
     public Polica getWantToRead() {
         return wantToRead;
@@ -195,5 +170,13 @@ public class AutorDto {
 
     public void setOstalePolice(Set<Polica> ostalePolice) {
         this.ostalePolice = ostalePolice;
+    }
+
+    public String getNovaLozinka() {
+        return novaLozinka;
+    }
+
+    public void setNovaLozinka(String novaLozinka) {
+        this.novaLozinka = novaLozinka;
     }
 }
