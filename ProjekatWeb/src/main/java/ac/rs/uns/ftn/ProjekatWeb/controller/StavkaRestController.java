@@ -24,9 +24,9 @@ public class StavkaRestController {
     @Autowired
     private PolicaService policaService;
 
-    @GetMapping("/*/police/{id}/stavke_police/")
-    public ResponseEntity<List<StavkaDto>> getStavka(@PathVariable (name = "polica_id") Long id){
-        Polica polica = policaService.findOne(id);
+    @GetMapping("/police/stavke_police/{polica_id}")
+    public ResponseEntity<List<StavkaDto>> getStavka(@PathVariable (name = "polica_id") Long polica_id){
+        Polica polica = policaService.findOne(polica_id);
         Set<StavkaPolice> stavkaList = polica.getStavkePolice();
 
         if (stavkaList.isEmpty()){
@@ -41,7 +41,7 @@ public class StavkaRestController {
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping("/*/stavke_police/{id}")
+    @GetMapping("/stavke_police/{id}")
     public ResponseEntity<StavkaDto> getStavke(@PathVariable(name = "id") Long id){
         StavkaPolice stavkaPolice = stavkaService.findOne(id);
 
@@ -52,9 +52,9 @@ public class StavkaRestController {
         return ResponseEntity.ok(dto);
     }
 
-    @PostMapping ("/*/police/{id}/nova-stavka")
-    public ResponseEntity saveStavka (@RequestBody StavkaPolice stavkaPolice, @PathVariable (name = "polica_id") Long polica_id, HttpSession session){
-        Korisnik loggedUser = (Korisnik) session.getAttribute("Korisnik");
+    @PostMapping ("/nova-stavka/{id}")
+    public ResponseEntity saveStavka (@RequestBody StavkaPolice stavkaPolice, @PathVariable (name = "id") Long polica_id, HttpSession session){
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
             return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
@@ -63,33 +63,29 @@ public class StavkaRestController {
         Polica polica = policaService.findOne(polica_id);
         Set<StavkaPolice> stavkaList = polica.getStavkePolice();
 
-        if (stavkaList.contains(stavkaPolice)){
-              return new ResponseEntity("Stavka sa datim imenom vec postoji na zeljenoj.", HttpStatus.BAD_REQUEST);
-        }
+        System.out.println(stavkaList);
 
-        List<Polica> police = policaService.findALlByStavkaPolice(stavkaPolice);
-
-        int i=0;
-
-        for (Polica temp : police){
-            if (temp.isPrimarna()){
-                i++;
+        for (StavkaPolice stavka: stavkaList){
+            if (stavka.getKnjiga().getId()==stavkaPolice.getKnjiga().getId()){
+                return new ResponseEntity("Stavka vec postoji na zeljenoj.", HttpStatus.BAD_REQUEST);
             }
         }
 
-        if (i>0 && polica.isPrimarna()){
-            return new ResponseEntity("Polica je vec na nekoj od primarnih polica", HttpStatus.FORBIDDEN);
-        }
-
+       if(this.stavkaService.proveriPrimarne(stavkaPolice)){
+           return new ResponseEntity("Stavka sa datim imenom vec postoji na nekoj od primarnih.", HttpStatus.BAD_REQUEST);
+       }
 
         this.stavkaService.saveStavka(stavkaPolice);
-        return new ResponseEntity("Uspesno dodavanje police.", HttpStatus.OK);
+        stavkaList.add(stavkaPolice);
+        polica.setStavkePolice(stavkaList);
+        policaService.savePolica(polica);
+        return new ResponseEntity("Dodata na policu.", HttpStatus.OK);
 
     }
 
-    @DeleteMapping("/*/police/{id}/brisanje-stavke/{id}")
+    @DeleteMapping("/brisanje-stavke/{polica_id}/{id}")
     public ResponseEntity deleteStavka (@PathVariable (name = "polica_id")Long polica_id,@PathVariable (name = "id")Long id, HttpSession session){
-        Korisnik loggedUser = (Korisnik) session.getAttribute("Korisnik");
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
             return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);

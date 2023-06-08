@@ -21,7 +21,7 @@ public class RecenzijaRestController {
     @Autowired
     private RecenzijaService recenzijaService;
 
-    @GetMapping("/*/recenzije/{id}")
+    @GetMapping("/recenzije/{id}")
     public ResponseEntity<RecenzijaDto> getRecenzija (@PathVariable (name = "id") Long id){
         Recenzija recenzija = recenzijaService.findOne(id);
         RecenzijaDto recenzijaDto= new RecenzijaDto(recenzija);
@@ -29,9 +29,9 @@ public class RecenzijaRestController {
         return ResponseEntity.ok(recenzijaDto);
     }
 
-    @GetMapping ("/*/knjige/{id}/recenzije/")
-    public ResponseEntity<List<RecenzijaDto>> getRecenzije(@PathVariable (name = "knjiga_id") Long knjiga_id){
-        List<Recenzija> recenzijaList = recenzijaService.findAllByKnjigaId(knjiga_id);
+    @GetMapping ("/recenzije-korisnika/{korisnik_id}")
+    public ResponseEntity<List<RecenzijaDto>> getRecenzije(@PathVariable (name = "korisnik_id") Long korisnik_id){
+        List<Recenzija> recenzijaList = recenzijaService.findAllByKorisnikId(korisnik_id);
 
         if (recenzijaList.isEmpty()){
             return new ResponseEntity("Nema recenzija", HttpStatus.NOT_FOUND);
@@ -45,9 +45,9 @@ public class RecenzijaRestController {
         return ResponseEntity.ok(dtos);
     }
 
-    @PostMapping ("/*/nova-recenzija")
+    @PostMapping ("/nova-recenzija")
     public ResponseEntity saveRecenzija (@RequestBody Recenzija recenzija, HttpSession session){
-        Korisnik loggedUser = (Korisnik) session.getAttribute("Korisnik");
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
             return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
@@ -57,11 +57,11 @@ public class RecenzijaRestController {
         return new ResponseEntity("Recenzija Sacuvana", HttpStatus.OK);
     }
 
-    @PutMapping("/*/recenzije/{id}/edit-recenzije/")
+    @PutMapping("/recenzije/edit-recenzije/{id}")
     public ResponseEntity updateRecenzija (@PathVariable (name = "id")Long id, @RequestBody Recenzija recenzija, HttpSession session) {
-        Korisnik loggedUser = (Korisnik) session.getAttribute("Korisnik");
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
-        if (loggedUser == null || loggedUser!=recenzija.getKorisnik()) {
+        if (loggedUser == null /*|| loggedUser!=recenzija.getKorisnik()*/) {
             return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
         }
 
@@ -77,18 +77,23 @@ public class RecenzijaRestController {
         return new ResponseEntity("Recenzija Sacuvana", HttpStatus.OK);
     }
 
-    @DeleteMapping("/*/brisanje-recenzije{id}")
-    public ResponseEntity deleteRecenzija (@PathVariable (name = "id")Long id, @RequestBody Recenzija recenzija, HttpSession session) {
-        Korisnik loggedUser = (Korisnik) session.getAttribute("Korisnik");
+    @DeleteMapping("/brisanje-recenzije/{id}")
+    public ResponseEntity deleteRecenzija (@PathVariable (name = "id")Long id, HttpSession session) {
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
-        if (loggedUser == null || loggedUser!=recenzija.getKorisnik()) {
+        Recenzija recenzija = recenzijaService.findOne(id);
+
+
+        if (loggedUser == null /*|| loggedUser!=recenzija.getKorisnik()*/) {
             return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
         }
 
-        Recenzija recenzijaStara = recenzijaService.findOne(id);
+        if (recenzija==null){
+            return new ResponseEntity("Ne postoji recenzija.", HttpStatus.NOT_FOUND);
+        }
 
         recenzijaService.delete(recenzija);
-        return new ResponseEntity("Recenzija Sacuvana", HttpStatus.OK);
+        return new ResponseEntity("Recenzija izbrisana", HttpStatus.OK);
     }
 
 

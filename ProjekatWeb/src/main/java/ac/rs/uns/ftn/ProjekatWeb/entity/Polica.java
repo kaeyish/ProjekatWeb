@@ -18,7 +18,7 @@ public class Polica implements Serializable {
     @Column
     private boolean primarna;
 
-    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable (
             name = "stavke_na_polici",  //????
             joinColumns = @JoinColumn(

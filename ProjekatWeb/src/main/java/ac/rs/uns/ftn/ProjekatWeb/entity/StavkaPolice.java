@@ -9,11 +9,11 @@ public class StavkaPolice implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL) //manytoone
+    @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.MERGE) //manytoone
     @JoinColumn (name = "knjiga_id")
     private Knjiga knjiga;
 
-    @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Recenzija recenzija;
 
     public StavkaPolice() {

@@ -28,21 +28,25 @@ public class IndexRestController {
         if (logInDto.getEmail().isEmpty()){
             return new ResponseEntity<>("Nepostojece korisnicko ime.", HttpStatus.BAD_REQUEST);
         }
-        if (logInDto.getLozinka().isEmpty()){
+        if (logInDto.getPassword().isEmpty()){
             return new ResponseEntity<>("Niste uneli sifru.", HttpStatus.BAD_REQUEST);
         }
 
-        Korisnik loggedUser = korisnikService.login(logInDto.getEmail(), logInDto.getLozinka());
+        System.out.println("email" + logInDto.getEmail());
+        System.out.println("pass" + logInDto.getPassword());
+
+
+        Korisnik loggedUser = korisnikService.login(logInDto.getEmail(), logInDto.getPassword());
 
         if (loggedUser == null){
-            return new ResponseEntity<>("Nepostojeci korisnik", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("korisnik", HttpStatus.NOT_FOUND);
         }
 
         session.setAttribute("korisnik", loggedUser);
         return ResponseEntity.ok("Uspesno ulogovano.");
     }
 
-    @PostMapping("api/logout/")
+    @PostMapping("api/logout")
     public ResponseEntity logout(HttpSession session){
         Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 

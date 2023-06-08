@@ -1,10 +1,12 @@
 package ac.rs.uns.ftn.ProjekatWeb.repository;
 
+import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Recenzija;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 public interface RecenzijaRepository extends JpaRepository<Recenzija, Long> {
-    List<Recenzija> findAllByKnjigaId(Long knjigaId);
+
+    List<Recenzija> findAllByKorisnik(Korisnik korisnik);
 }

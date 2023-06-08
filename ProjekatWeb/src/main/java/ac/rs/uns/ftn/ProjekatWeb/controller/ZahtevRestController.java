@@ -24,7 +24,7 @@ public class ZahtevRestController {
     public ResponseEntity<List<ZahtevDto>> getZahtevi (HttpSession session){
         List<ZahtevAktivacija> zahtevAktivacijaList = zahtevAktivacijaService.findAll();
 
-        Korisnik loggedUser = (Korisnik) session.getAttribute("user");
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
         if (loggedUser == null){
             System.out.println("Nema sesije");
             return new ResponseEntity("Forbidden", HttpStatus.FORBIDDEN);
@@ -44,7 +44,7 @@ public class ZahtevRestController {
 
     @GetMapping("/api/zahtevi/{id}")
     public ResponseEntity<ZahtevDto> getZahtev(@PathVariable (name = "id") Long id, HttpSession session){
-        Korisnik loggedUser = (Korisnik) session.getAttribute("Korisnik");
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
             System.out.println("Nema sesije");
@@ -61,7 +61,7 @@ public class ZahtevRestController {
 
     @PostMapping("/api/novi-zahtev")
     public ResponseEntity saveZahtev (@RequestBody ZahtevAktivacija zahtevAktivacija, HttpSession session){
-        Korisnik loggedUser = (Korisnik) session.getAttribute("Korisnik");
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser != null){
             System.out.println("Zahtev moze postaviti samo neulogovan korisnik");

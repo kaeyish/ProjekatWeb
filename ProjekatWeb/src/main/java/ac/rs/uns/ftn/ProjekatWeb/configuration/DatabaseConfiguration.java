@@ -60,6 +60,7 @@ public class DatabaseConfiguration {
         recenzijaRepository.save(r1);
 
         StavkaPolice sp1 = new StavkaPolice(knjiga1,r1);
+        //stavkaPoliceRepository.save(sp1);
 
         Korisnik k1 = new Korisnik("Imenko","Prezimenko","korisnicko123","imenko@gmail.com","pass123", Date.from(Instant.now()),"profilna.com","ovo je neki opis", Uloga.CITALAC,p1,p2,p3);
         Korisnik k2 = new Korisnik("Andjela","Petkovic","brownotter","andjela@gmail.com","lozinka123", Date.from(Instant.now()),"www.profilna.com","ovo moj je neki opis",Uloga.ADMINISTRATOR,p1,p2,p3);

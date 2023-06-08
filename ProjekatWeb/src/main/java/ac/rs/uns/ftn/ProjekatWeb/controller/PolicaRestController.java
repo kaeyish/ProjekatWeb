@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Set;
 
 @RestController
 public class PolicaRestController {
@@ -27,10 +27,19 @@ public class PolicaRestController {
     @Autowired
     private KorisnikService korisnikService;
 
-    @GetMapping("/*/korisnik/{id}/police")
+    @GetMapping("/api/korisnik/police/{korisnik_id}")
     public ResponseEntity<List<PolicaDto>> getPolice(@PathVariable (name = "korisnik_id") Long korisnik_id){
 
-        List<Polica> police = policaService.findAllByKorisnikId(korisnik_id);
+        Korisnik korisnik = korisnikService.findOne(korisnik_id);
+        Set<Polica> police = korisnik.getOstalePolice();
+
+        police.add(korisnik.getCurrentlyReading());
+        police.add(korisnik.getRead());
+        police.add(korisnik.getWantToRead());
+
+        if (police.isEmpty()){
+            return new ResponseEntity("Nema polica.", HttpStatus.NOT_FOUND);
+        }
 
         List<PolicaDto> dtos = new ArrayList<>();
 
@@ -41,7 +50,7 @@ public class PolicaRestController {
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping("/*/police/{id}")
+    @GetMapping("/police/{id}")
     public ResponseEntity<PolicaDto> getPolica(@PathVariable(name = "id")Long id){
         Polica polica = policaService.findOne(id);
 
@@ -54,9 +63,9 @@ public class PolicaRestController {
     }
 
 
-    @PostMapping ("/*/nova_polica")
+    @PostMapping ("/nova-polica")
     public ResponseEntity savePolica (@RequestBody Polica polica, HttpSession session){
-        Korisnik loggedUser = (Korisnik) session.getAttribute("Korisnik");
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
             return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
@@ -69,9 +78,9 @@ public class PolicaRestController {
         return new ResponseEntity("Uspesno dodavanje police.", HttpStatus.OK);
     }
 
-    @DeleteMapping ("/*/brisanje-police/{id}")
+    @DeleteMapping ("/brisanje-police/{id}")
     public ResponseEntity deletePolica (@PathVariable(name = "id") Long id, HttpSession session){
-        Korisnik loggedUser = (Korisnik) session.getAttribute("Korisnik");
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
             return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);

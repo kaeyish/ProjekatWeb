@@ -39,9 +39,10 @@ public class PolicaService {
 
     public void delete(Polica polica) {policaRepository.delete(polica);}
 
-    public List<Polica> findAllByKorisnik (Korisnik korisnik) {return findAllByKorisnik(korisnik);}
+    public List<Polica> findAllByKorisnik (Korisnik korisnik) {
+        return policaRepository.findAllByKorisnik(korisnik);
+    }
 
-    public List<Polica> findAllByKorisnikId(Long korisnikId) {return findAllByKorisnikId(korisnikId);}
+    public List<Polica> findAllByKorisnikId(Long korisnikId) {return policaRepository.findAllByKorisnikId(korisnikId);}
 
-    public List<Polica> findALlByStavkaPolice(StavkaPolice stavkaPolice) {return policaRepository.findALlByStavkaPolice(stavkaPolice);}
-}
+    }
