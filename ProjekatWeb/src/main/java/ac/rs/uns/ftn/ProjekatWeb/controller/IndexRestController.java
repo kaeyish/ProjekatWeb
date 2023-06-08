@@ -43,11 +43,11 @@ public class IndexRestController {
     }
 
     @PostMapping("api/logout/")
-    public ResponseEntity logout(HttpSession session){
+    public ResponseEntity<String> logout(HttpSession session){
         Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
-            return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
         }
 
         session.invalidate();

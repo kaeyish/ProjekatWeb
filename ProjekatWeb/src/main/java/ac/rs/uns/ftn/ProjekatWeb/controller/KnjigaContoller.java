@@ -76,27 +76,21 @@ public class KnjigaContoller {
         knjigaService.deleteKnjiga(id);
         return new ResponseEntity<String>("Knjiga je uspesno obrisana",HttpStatus.OK);
     }
-
-//    @GetMapping("/api/knjiga/{zanr}")
-//    public ResponseEntity<KnjigaDto> getKnjigaByNaslov (@PathVariable String zanr){
-//        Knjiga knjiga = knjigaService.findByNaslov(zanr);
-//        if (knjiga == null){
-//            return new ResponseEntity("Knjiga nije pronadjena", HttpStatus.NOT_FOUND);
-//        }
-//        KnjigaDto knjigaDto = new KnjigaDto(
-//                knjiga.getId(),
-//                knjiga.getNaslov(),
-//                knjiga.getNaslovnaFotografija(),
-//                knjiga.getIsbn(),
-//                knjiga.getDatumObjavljivanja(),
-//                knjiga.getBrojStrana(),
-//                knjiga.getOpis(),
-//                knjiga.getOcena(),
-//                knjiga.getAutor(),
-//                knjiga.getZanr()
-//        );
-//        return new ResponseEntity<>(knjigaDto, HttpStatus.OK);
-//    }
+    //pretraga po naslovu
+    @GetMapping("/api/knjige/{naslov}")
+    public ResponseEntity<List<KnjigaDto>> findByNaslov(@PathVariable String naslov){
+        List<Knjiga> listaKnjiga = knjigaService.findByNaslovCo(naslov);
+        if (listaKnjiga != null){
+            //return new ResponseEntity<>( "Nema trazene knjige",HttpStatus.NOT_FOUND);
+            List<KnjigaDto> knjigaDtos = new ArrayList<>();
+            for (Knjiga k : listaKnjiga){
+                KnjigaDto dto = new KnjigaDto(k);
+                knjigaDtos.add(dto);
+            }
+            return new ResponseEntity<>(knjigaDtos, HttpStatus.OK);
+        }
+        return new ResponseEntity("Nema knjige sa tim nazivom",HttpStatus.NOT_FOUND);
+    }
 
 }
 
