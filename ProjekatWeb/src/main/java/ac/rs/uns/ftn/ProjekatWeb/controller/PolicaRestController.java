@@ -50,7 +50,7 @@ public class PolicaRestController {
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping("/police/{id}")
+    @GetMapping("/api/police/{id}")
     public ResponseEntity<PolicaDto> getPolica(@PathVariable(name = "id")Long id){
         Polica polica = policaService.findOne(id);
 
@@ -63,7 +63,7 @@ public class PolicaRestController {
     }
 
 
-    @PostMapping ("/nova-polica")
+    @PostMapping ("/api/nova-polica")
     public ResponseEntity savePolica (@RequestBody Polica polica, HttpSession session){
         Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
@@ -78,7 +78,7 @@ public class PolicaRestController {
         return new ResponseEntity("Uspesno dodavanje police.", HttpStatus.OK);
     }
 
-    @DeleteMapping ("/brisanje-police/{id}")
+    @DeleteMapping ("/api/brisanje-police/{id}")
     public ResponseEntity deletePolica (@PathVariable(name = "id") Long id, HttpSession session){
         Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 

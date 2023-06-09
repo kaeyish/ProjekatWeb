@@ -1,42 +1,30 @@
 package ac.rs.uns.ftn.ProjekatWeb.dto;
 
-import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
-
 public class LoginDto {
-
     private String email;
-
-    private String password;
-
-    public LoginDto(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-    public LoginDto (Korisnik korisnik){
-        this.email = korisnik.getEmail();
-        this.password = korisnik.getLozinka();
-    }
-
+    private String lozinka;
 
     public LoginDto() {
     }
 
-
+    public LoginDto(String email, String lozinka) {
+        this.email = email;
+        this.lozinka = lozinka;
+    }
 
     public String getEmail() {
         return email;
     }
 
-    public void setUsername(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getLozinka() {
+        return lozinka;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLozinka(String lozinka) {
+        this.lozinka = lozinka;
     }
 }

@@ -148,26 +148,25 @@ public class KorisnikContoller {
     }
 
     //autor moze da azurira svoje knjige
-    @PostMapping("/api/korisnik/azuriranje-knjige/{id}")
-    public ResponseEntity<String> azurirajKnjiguAutor (@RequestParam Long id, @RequestBody KnjigaDto knjigaDto, HttpSession session){
+    @PutMapping("/api/korisnik/azuriranje-knjige/{id}")
+    public ResponseEntity<String> azurirajKnjiguAutor (@PathVariable Long id, @RequestBody KnjigaDto knjigaDto, HttpSession session){
         Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
         if (prijavljeniKorisnik == null){
             return new ResponseEntity<>("Nemate pristup!",HttpStatus.NOT_FOUND);
         }
         if (prijavljeniKorisnik.getUloga().equals(Uloga.AUTOR)){
-            Optional<Knjiga> knjiga = knjigaService.finOne(id);
-            if(knjiga.isPresent()){
-                Knjiga stara = knjiga.get();
-                stara.setNaslov(knjigaDto.getNaslov() == null ? stara.getNaslov() : knjigaDto.getNaslov());
-                stara.setNaslovnaFotografija(knjigaDto.getNaslovnaFotografija()==null ?stara.getNaslovnaFotografija() : knjigaDto.getNaslovnaFotografija());
-                stara.setIsbn(knjigaDto.getIsbn()== null ? stara.getIsbn() : knjigaDto.getIsbn());
-                stara.setBrojStrana(knjigaDto.getBrojStrana() == stara.getBrojStrana() ? stara.getBrojStrana() : knjigaDto.getBrojStrana());
-                stara.setAutor(knjigaDto.getAutor()==null ? stara.getAutor() : knjigaDto.getAutor());
-                stara.setDatumObjavljivanja(knjigaDto.getDatumObjavljivanja() == stara.getDatumObjavljivanja() ? stara.getDatumObjavljivanja() : knjigaDto.getDatumObjavljivanja());
-                stara.setOpis(knjigaDto.getOpis() == null ? stara.getOpis() : knjigaDto.getOpis());
-                stara.setZanr(knjigaDto.getZanr() == stara.getZanr() ? stara.getZanr() : knjigaDto.getZanr());
+            Optional<Knjiga> stara = knjigaService.finOne(id);
+            if(stara.isPresent()){
+                stara.get().setNaslov(knjigaDto.getNaslov()==null ? stara.get().getNaslov() : knjigaDto.getNaslov());
+                stara.get().setNaslovnaFotografija(knjigaDto.getNaslovnaFotografija() == null ? stara.get().getNaslovnaFotografija() : knjigaDto.getNaslovnaFotografija());
+                stara.get().setIsbn(knjigaDto.getIsbn() == null ? stara.get().getIsbn() : knjigaDto.getIsbn());
+                stara.get().setBrojStrana(knjigaDto.getBrojStrana());
+                stara.get().setAutor(knjigaDto.getAutor() == null ? stara.get().getAutor() : knjigaDto.getAutor());
+                stara.get().setDatumObjavljivanja(knjigaDto.getDatumObjavljivanja() == null ? stara.get().getDatumObjavljivanja() : knjigaDto.getDatumObjavljivanja());
+                stara.get().setOpis(knjigaDto.getOpis() == null ? stara.get().getOpis() : knjigaDto.getOpis());
+                stara.get().setZanr(knjigaDto.getZanr() == null ? stara.get().getZanr() : knjigaDto.getZanr());
 
-                knjigaService.save(stara);
+                knjigaService.save(stara.get());
                 return new ResponseEntity<>("Podaci knjige su uspesno azurirani!",HttpStatus.OK);
             }
         }
@@ -206,7 +205,7 @@ public class KorisnikContoller {
 
 
     //admin azurira knjige
-    @PostMapping("/api/korisnik/knjiga/{id}/azuriranje")
+    @PutMapping("/api/korisnik/knjiga/{id}/azuriranje")
     public ResponseEntity<String> azuriranjeKnjiga(@PathVariable Long id, @RequestBody KnjigaDto knjigaDto, HttpSession session) {
         Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
         if (prijavljeniKorisnik == null){
