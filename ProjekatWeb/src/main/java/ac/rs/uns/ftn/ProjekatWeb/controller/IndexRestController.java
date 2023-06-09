@@ -46,12 +46,12 @@ public class IndexRestController {
         return ResponseEntity.ok("Uspesno ulogovano.");
     }
 
-    @PostMapping("api/logout")
-    public ResponseEntity logout(HttpSession session){
+    @PostMapping("api/logout/")
+    public ResponseEntity<String> logout(HttpSession session){
         Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
-            return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
         }
 
         session.invalidate();

@@ -16,6 +16,7 @@ public class ZanrContoller {
     @Autowired
     ZanrService zanrService;
 
+    //prikaz svih zanrova
     @GetMapping("/api/zanrovi")
     public ResponseEntity<List<ZanrDto>> getZanrove(){
         List<Zanr> zanrList = zanrService.findAll();

@@ -112,9 +112,9 @@ public class KorisnikContoller {
         korisnik.setDatumRodjenja(korisnikDto.getDatumRodjenja()== null ? korisnik.getDatumRodjenja() : korisnikDto.getDatumRodjenja());
 
         //ne moze da promeni mejl i lozinku ako je pogresna lozink
-        if (korisnikDto.getLozinka()!= null && korisnikDto.getLozinka() != korisnik.getLozinka()){
-            return new ResponseEntity<>("Niste uneli tacnu lozinku, ne mozete promeniti podatke!",HttpStatus.FORBIDDEN);
-        }
+//            if (korisnikDto.getLozinka()!= null && korisnikDto.getLozinka() != korisnik.getLozinka()){
+//                return new ResponseEntity<>("Niste uneli tacnu lozinku, ne mozete promeniti podatke!",HttpStatus.FORBIDDEN);
+//            }
         korisnik.setEmail(korisnikDto.getEmail() == null ? korisnik.getEmail() : korisnikDto.getEmail());
         //lozinka postaje nova lozinka
         korisnik.setLozinka(korisnikDto.getNovaLozinka() == null ? korisnik.getLozinka() : korisnikDto.getNovaLozinka());
@@ -131,7 +131,7 @@ public class KorisnikContoller {
             return new ResponseEntity<>("Nemate pristup!", HttpStatus.NOT_FOUND);
         }
         if (prijavljeniKorisnik.getUloga().equals(Uloga.AUTOR)){
-            Knjiga novaKnjiga = null;
+            Knjiga novaKnjiga = new Knjiga();
             novaKnjiga.setNaslov(knjigaDto.getNaslov());
             novaKnjiga.setIsbn(knjigaDto.getIsbn());
             novaKnjiga.setNaslovnaFotografija(knjigaDto.getNaslovnaFotografija());
@@ -142,7 +142,6 @@ public class KorisnikContoller {
             novaKnjiga.setZanr(knjigaDto.getZanr());
 
             knjigaService.save(novaKnjiga);
-            return new ResponseEntity<>("Nova knjiga je uspeno dodata!", HttpStatus.OK);
         }
         return new ResponseEntity<>("Nemate ovu mogucnost!",HttpStatus.FORBIDDEN);
 
@@ -186,7 +185,7 @@ public class KorisnikContoller {
             autorService.kreirajAutora(autorDto.getIme(), autorDto.getPrezime(), autorDto.getKorisnickoIme(),autorDto.getEmail(),autorDto.getLozinka(),autorDto.getDatumRodjenja(),autorDto.getProfilnaSlika(),autorDto.getOpis(),autorDto.getUloga(),autorDto.getWantToRead(),autorDto.getCurrentlyReading(),autorDto.getRead(),autorDto.isAktivnost());
             return new ResponseEntity<>("Autor je uspesno kreiran!",HttpStatus.OK);
         }
-        return new ResponseEntity("Ova opcija je dozvoljena samo administratorima!",HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>("Ova opcija je dozvoljena samo administratorima!",HttpStatus.FORBIDDEN);
     }
     //admin dodaje zanr
     @PostMapping("/api/korisnik/dodajZanr")
@@ -197,10 +196,10 @@ public class KorisnikContoller {
         }
         if (prijavljeniKorisnik.getUloga().equals(Uloga.ADMINISTRATOR)) {
             if (zanrDto.getNaziv().isEmpty()) {
-                return new ResponseEntity("Polja ne smeju biti prazna!", HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>("Polja ne smeju biti prazna!", HttpStatus.BAD_REQUEST);
             }
             zanrService.dodajZanr(zanrDto);
-            return new ResponseEntity("Zanr je uspeno dodat", HttpStatus.OK);
+            return new ResponseEntity<>("Zanr je uspeno dodat", HttpStatus.OK);
         }
         return new ResponseEntity<>("Ova opcija je dozvoljena samo administratorima", HttpStatus.FORBIDDEN);
     }
@@ -216,19 +215,20 @@ public class KorisnikContoller {
         if (prijavljeniKorisnik.getUloga().equals(Uloga.ADMINISTRATOR)){
             Optional<Knjiga> stara = knjigaService.finOne(id);
             if(stara.isPresent()){
-                stara.get().setNaslov(knjigaDto.getNaslov());
-                stara.get().setNaslovnaFotografija(knjigaDto.getNaslovnaFotografija());
-                stara.get().setIsbn(knjigaDto.getIsbn());
+                stara.get().setNaslov(knjigaDto.getNaslov()==null ? stara.get().getNaslov() : knjigaDto.getNaslov());
+                stara.get().setNaslovnaFotografija(knjigaDto.getNaslovnaFotografija() == null ? stara.get().getNaslovnaFotografija() : knjigaDto.getNaslovnaFotografija());
+                stara.get().setIsbn(knjigaDto.getIsbn() == null ? stara.get().getIsbn() : knjigaDto.getIsbn());
                 stara.get().setBrojStrana(knjigaDto.getBrojStrana());
-                stara.get().setAutor(knjigaDto.getAutor());
-                stara.get().setDatumObjavljivanja(knjigaDto.getDatumObjavljivanja());
-                stara.get().setOpis(knjigaDto.getOpis());
-                stara.get().setZanr(knjigaDto.getZanr());
+                stara.get().setAutor(knjigaDto.getAutor() == null ? stara.get().getAutor() : knjigaDto.getAutor());
+                stara.get().setDatumObjavljivanja(knjigaDto.getDatumObjavljivanja() == null ? stara.get().getDatumObjavljivanja() : knjigaDto.getDatumObjavljivanja());
+                stara.get().setOpis(knjigaDto.getOpis() == null ? stara.get().getOpis() : knjigaDto.getOpis());
+                stara.get().setZanr(knjigaDto.getZanr() == null ? stara.get().getZanr() : knjigaDto.getZanr());
+
                 knjigaService.save(stara.get());
-                return new ResponseEntity("Uspesno promenuti podaci knjige", HttpStatus.OK);
+                return new ResponseEntity<>("Uspesno promenuti podaci knjige", HttpStatus.OK);
             }
         }
-        return new ResponseEntity("Ova opcija je dozvoljena samo administratorima", HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>("Ova opcija je dozvoljena samo administratorima", HttpStatus.FORBIDDEN);
     }
     //admin moze da doda knjigu
     @PostMapping("/api/korisnik/dodaj-knjigu")
@@ -265,24 +265,24 @@ public class KorisnikContoller {
         }// Ažuriranje
         if (prijavljeniKorisnik.getUloga().equals(Uloga.ADMINISTRATOR)) {
             Autor a = autorService.findOne(id);
-            if (a != null && a.isAktivnost() == false) {
-                a.setIme(autorDto.getIme());
-                a.setPrezime(autorDto.getPrezime());
-                a.setKorisnickoIme(autorDto.getKorisnickoIme());
-                a.setLozinka(autorDto.getLozinka());
-                a.setEmail(autorDto.getEmail());
-                a.setDatumRodjenja(autorDto.getDatumRodjenja());
-                a.setOpis(autorDto.getOpis());
-                a.setProfilnaSlika(autorDto.getProfilnaSlika());
-                a.setCurrentlyReading(autorDto.getCurrentlyReading());
-                a.setRead(autorDto.getRead());
-                a.setWantToRead(a.getWantToRead());
-                a.setKnjige(a.getKnjige());
-                a.setAktivnost(a.isAktivnost());
-                return new ResponseEntity("Uspesno promenuti podaci citalaca", HttpStatus.OK);
+            if (a != null && !a.isAktivnost()) {
+                a.setIme(autorDto.getIme() == null ? a.getIme() : autorDto.getIme());
+                a.setPrezime(autorDto.getPrezime() == null ? a.getPrezime() : autorDto.getPrezime());
+                a.setKorisnickoIme(autorDto.getKorisnickoIme() == null ? a.getKorisnickoIme() : autorDto.getKorisnickoIme());
+                a.setLozinka(autorDto.getLozinka() == null ? a.getLozinka() : autorDto.getLozinka());
+                a.setEmail(autorDto.getEmail()== null ? a.getEmail() : autorDto.getEmail());
+                a.setDatumRodjenja(autorDto.getDatumRodjenja() == null ? a.getDatumRodjenja() :autorDto.getDatumRodjenja());
+                a.setOpis(autorDto.getOpis() == null ? a.getOpis() : autorDto.getOpis());
+                a.setProfilnaSlika(autorDto.getProfilnaSlika() == null ? a.getProfilnaSlika() : autorDto.getProfilnaSlika());
+                a.setCurrentlyReading(autorDto.getCurrentlyReading() == null ? a.getCurrentlyReading() : autorDto.getCurrentlyReading());
+                a.setRead(autorDto.getRead() == null ? a.getWantToRead() : autorDto.getRead());
+                a.setWantToRead(autorDto.getWantToRead() == null ? a.getWantToRead() : autorDto.getWantToRead());
+                a.setKnjige(autorDto.getKnjige() == null ? a.getKnjige() : autorDto.getKnjige());
+                a.setAktivnost(autorDto.isAktivnost());
+                return new ResponseEntity<>("Uspesno promenuti podaci citalaca", HttpStatus.OK);
             }
             return new ResponseEntity<>("Autor ne postoji", HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity("Ova opcija je dozvoljena samo administratorima!", HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>("Ova opcija je dozvoljena samo administratorima!", HttpStatus.FORBIDDEN);
     }
 }
