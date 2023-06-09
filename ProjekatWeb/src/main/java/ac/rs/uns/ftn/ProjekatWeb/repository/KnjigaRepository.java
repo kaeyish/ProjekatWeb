@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 public interface KnjigaRepository extends JpaRepository<Knjiga, Long> {
@@ -24,5 +25,9 @@ public interface KnjigaRepository extends JpaRepository<Knjiga, Long> {
 
     Knjiga findByNaslov(String naslov);
     Knjiga findByZanr(Zanr zanr);
+
+    List<Knjiga> findByZanrNaziv(String naziv);
+
+    List<Knjiga> findByNaslovContaining(String n);
 
 }

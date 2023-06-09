@@ -39,8 +39,13 @@ public class KnjigaService {
         return knjigaRepository.findByNaslov(n);
     }
 
-    public Knjiga findByZanr(Zanr zanr){
-        return knjigaRepository.findByZanr(zanr);
+    public List<Knjiga> findByZanr(String naziv){
+        return knjigaRepository.findByZanrNaziv(naziv);
+
+    }
+
+    public List<Knjiga> findByNaslovCo(String naslov){
+        return knjigaRepository.findByNaslovContaining(naslov);
     }
 
 }

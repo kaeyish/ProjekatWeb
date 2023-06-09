@@ -1,6 +1,7 @@
 package ac.rs.uns.ftn.ProjekatWeb.controller;
 
 import ac.rs.uns.ftn.ProjekatWeb.dto.LoginDto;
+import ac.rs.uns.ftn.ProjekatWeb.dto.RegistrationDto;
 import ac.rs.uns.ftn.ProjekatWeb.service.KorisnikService;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
 import jakarta.servlet.http.HttpSession;
@@ -28,15 +29,15 @@ public class IndexRestController {
         if (logInDto.getEmail().isEmpty()){
             return new ResponseEntity<>("Nepostojece korisnicko ime.", HttpStatus.BAD_REQUEST);
         }
-        if (logInDto.getPassword().isEmpty()){
+        if (logInDto.getLozinka().isEmpty()){
             return new ResponseEntity<>("Niste uneli sifru.", HttpStatus.BAD_REQUEST);
         }
 
-        System.out.println("email" + logInDto.getEmail());
-        System.out.println("pass" + logInDto.getPassword());
+        System.out.println("email " + logInDto.getEmail());
+        System.out.println("pass " + logInDto.getLozinka());
 
 
-        Korisnik loggedUser = korisnikService.login(logInDto.getEmail(), logInDto.getPassword());
+        Korisnik loggedUser = korisnikService.login(logInDto.getEmail(), logInDto.getLozinka());
 
         if (loggedUser == null){
             return new ResponseEntity<>("korisnik", HttpStatus.NOT_FOUND);
@@ -47,16 +48,33 @@ public class IndexRestController {
     }
 
     @PostMapping("api/logout")
-    public ResponseEntity logout(HttpSession session){
+    public ResponseEntity<String> logout(HttpSession session){
         Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
-            return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
         }
 
         session.invalidate();
 
         return ResponseEntity.ok("Uspesno odjavljeno.");
+    }
+
+    @PostMapping("/api/registracija")
+    public ResponseEntity<String> saveKorisnik (@RequestBody RegistrationDto registrationDto){
+
+//        if (registrationDto.getLozinka() != registrationDto.getPotvrdaLozinke()){
+//            return new ResponseEntity<>("Lozinke se ne poklapaju!", HttpStatus.FORBIDDEN);
+//        }
+
+        Korisnik k = new Korisnik();
+        k.setIme(registrationDto.getIme());
+        k.setPrezime(registrationDto.getPrezime());
+        k.setKorisnickoIme(registrationDto.getKorisnickoIme());
+        k.setEmail(registrationDto.getMail());
+        k.setLozinka(registrationDto.getLozinka());
+        korisnikService.save(k);
+        return new ResponseEntity<>("Uspesno ste se registrovali", HttpStatus.OK);
     }
 
 }
