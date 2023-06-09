@@ -55,6 +55,7 @@ public class RecenzijaRestController {
             return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
         }
 
+        recenzija.setKorisnik(loggedUser);
         recenzijaService.save(recenzija);
         return new ResponseEntity("Recenzija Sacuvana", HttpStatus.OK);
     }

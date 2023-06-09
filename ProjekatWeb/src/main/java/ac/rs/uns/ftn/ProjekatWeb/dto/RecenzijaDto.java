@@ -1,6 +1,7 @@
 package ac.rs.uns.ftn.ProjekatWeb.dto;
 
 import ac.rs.uns.ftn.ProjekatWeb.entity.Citalac;
+import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Recenzija;
 
 import java.util.Date;
@@ -14,7 +15,7 @@ public class RecenzijaDto {
 
      private Date datum;
 
-     private Citalac citalac;
+     private Korisnik korisnik;
 
     public RecenzijaDto() {
     }
@@ -24,7 +25,7 @@ public class RecenzijaDto {
         this.ocena = recenzija.getOcena();
         this.tekst = recenzija.getTekst();
         this.datum = recenzija.getDatum();
-        this.citalac = (Citalac) recenzija.getKorisnik();
+        this.korisnik = recenzija.getKorisnik();
     }
 
     public Long getId() {
@@ -59,19 +60,19 @@ public class RecenzijaDto {
         this.datum = datum;
     }
 
-    public Citalac getCitalac() {
-        return citalac;
+    public Korisnik getKorisnik() {
+        return korisnik;
     }
 
-    public void setCitalac(Citalac citalac) {
-        this.citalac = citalac;
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
     }
 
-    public RecenzijaDto(Long id, int ocena, String tekst, Date datum, Citalac citalac) {
+    public RecenzijaDto(Long id, int ocena, String tekst, Date datum, Korisnik korisnik) {
         this.id = id;
         this.ocena = ocena;
         this.tekst = tekst;
         this.datum = datum;
-        this.citalac = citalac;
+        this.korisnik = korisnik;
     }
 }

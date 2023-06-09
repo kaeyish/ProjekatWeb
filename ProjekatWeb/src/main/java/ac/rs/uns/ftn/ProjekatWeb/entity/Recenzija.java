@@ -19,7 +19,7 @@ public class Recenzija implements Serializable {
     @Column
     private Date datum;
 
-    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn (name = "korisnik_id")
     private Korisnik korisnik;
 
