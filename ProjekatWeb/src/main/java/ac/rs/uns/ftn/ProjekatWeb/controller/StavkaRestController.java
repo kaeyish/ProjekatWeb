@@ -1,9 +1,11 @@
 package ac.rs.uns.ftn.ProjekatWeb.controller;
 
+import ac.rs.uns.ftn.ProjekatWeb.dto.PolicaDto;
 import ac.rs.uns.ftn.ProjekatWeb.dto.StavkaDto;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Polica;
 import ac.rs.uns.ftn.ProjekatWeb.entity.StavkaPolice;
+import ac.rs.uns.ftn.ProjekatWeb.entity.Uloga;
 import ac.rs.uns.ftn.ProjekatWeb.service.PolicaService;
 import ac.rs.uns.ftn.ProjekatWeb.service.StavkaService;
 import jakarta.servlet.http.HttpSession;
@@ -39,6 +41,32 @@ public class StavkaRestController {
             dtos.add(dto);
         }
         return ResponseEntity.ok(dtos);
+    }
+
+    @GetMapping ("/api/sve-stavke")
+    public ResponseEntity<List<StavkaDto>> sveStavke (HttpSession session){
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
+
+        if (loggedUser.getUloga() != Uloga.ADMINISTRATOR){
+            return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
+        }
+
+        List<StavkaPolice> stavke = stavkaService.findAll();
+        List<StavkaDto> dtos = new ArrayList<>();
+
+
+
+        if (stavke == null){
+            return new ResponseEntity("Nema polica", HttpStatus.NOT_FOUND);
+        }
+
+        for(StavkaPolice stavka : stavke){
+            StavkaDto dto = new StavkaDto(stavka);
+            dtos.add(dto);
+        }
+
+        return ResponseEntity.ok(dtos);
+
     }
 
     @GetMapping("/stavke_police/{id}")

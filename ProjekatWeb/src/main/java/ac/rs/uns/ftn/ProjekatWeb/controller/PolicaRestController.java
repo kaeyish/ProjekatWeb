@@ -2,10 +2,7 @@ package ac.rs.uns.ftn.ProjekatWeb.controller;
 
 import ac.rs.uns.ftn.ProjekatWeb.dto.PolicaDto;
 import ac.rs.uns.ftn.ProjekatWeb.dto.ZanrDto;
-import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
-import ac.rs.uns.ftn.ProjekatWeb.entity.Polica;
-import ac.rs.uns.ftn.ProjekatWeb.entity.StavkaPolice;
-import ac.rs.uns.ftn.ProjekatWeb.entity.Zanr;
+import ac.rs.uns.ftn.ProjekatWeb.entity.*;
 import ac.rs.uns.ftn.ProjekatWeb.service.KorisnikService;
 import ac.rs.uns.ftn.ProjekatWeb.service.PolicaService;
 import jakarta.servlet.http.HttpSession;
@@ -48,6 +45,33 @@ public class PolicaRestController {
             dtos.add(dto);
         }
         return ResponseEntity.ok(dtos);
+    }
+
+    @GetMapping("/api/sve-police")
+    public ResponseEntity<List<PolicaDto>> svePolice (HttpSession session) {
+
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
+
+        if (loggedUser.getUloga() != Uloga.ADMINISTRATOR){
+            return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
+        }
+
+        List<Polica> police = policaService.findAll();
+        List<PolicaDto> dtos = new ArrayList<>();
+
+
+
+        if (police == null){
+            return new ResponseEntity("Nema polica", HttpStatus.NOT_FOUND);
+        }
+
+        for(Polica polica : police){
+            PolicaDto dto = new PolicaDto(polica);
+            dtos.add(dto);
+        }
+
+        return ResponseEntity.ok(dtos);
+
     }
 
     @GetMapping("/police/{id}")
