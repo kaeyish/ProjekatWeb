@@ -2,6 +2,7 @@ package ac.rs.uns.ftn.ProjekatWeb.controller;
 
 import ac.rs.uns.ftn.ProjekatWeb.dto.ZahtevDto;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
+import ac.rs.uns.ftn.ProjekatWeb.entity.Status;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Uloga;
 import ac.rs.uns.ftn.ProjekatWeb.entity.ZahtevAktivacija;
 import ac.rs.uns.ftn.ProjekatWeb.service.ZahtevAktivacijaService;
@@ -73,5 +74,51 @@ public class ZahtevRestController {
 
     }
 
+   @PutMapping ("/api/odbij-zahtev/{id}")
+   public ResponseEntity odbijZahtev (@PathVariable (name = "id") Long id, HttpSession session){
+       Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
+       if (loggedUser == null){
+           System.out.println("Nema sesije");
+           return new ResponseEntity("Forbidden", HttpStatus.FORBIDDEN);
+       }
+
+       if(loggedUser.getUloga()!= Uloga.ADMINISTRATOR){
+           return new ResponseEntity("Forbidden", HttpStatus.FORBIDDEN);
+       }
+
+       ZahtevAktivacija zahtevAktivacija = zahtevAktivacijaService.findOne(id);
+
+       {
+           zahtevAktivacija.setStatus(Status.ODBIJEN);
+       }
+
+       zahtevAktivacijaService.saveZahtev(zahtevAktivacija);
+        return new ResponseEntity("odbijen.", HttpStatus.OK);
+
+   }
+
+    @PutMapping ("/api/odobri-zahtev/{id}")
+    public ResponseEntity odobriZahtev (@PathVariable (name = "id") Long id, HttpSession session){
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
+
+        if (loggedUser == null){
+            System.out.println("Nema sesije");
+            return new ResponseEntity("Forbidden", HttpStatus.FORBIDDEN);
+        }
+
+        if(loggedUser.getUloga()!= Uloga.ADMINISTRATOR){
+            return new ResponseEntity("Forbidden", HttpStatus.FORBIDDEN);
+        }
+
+        ZahtevAktivacija zahtevAktivacija = zahtevAktivacijaService.findOne(id);
+
+        {
+            zahtevAktivacija.setStatus(Status.ODOBREN);
+        }
+
+        zahtevAktivacijaService.saveZahtev(zahtevAktivacija);
+        return new ResponseEntity("odobren.", HttpStatus.OK);
+
+    }
 }

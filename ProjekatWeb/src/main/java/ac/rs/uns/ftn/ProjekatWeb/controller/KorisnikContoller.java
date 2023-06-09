@@ -84,9 +84,12 @@ public class KorisnikContoller {
 
     //dodavanje korisnika
     @PostMapping("/api/korisnik/save")
-    public String saveKorisnik (@RequestBody Korisnik korisnik){
+    public ResponseEntity<String> saveKorisnik (@RequestBody Korisnik korisnik){
+//        if (korisnik.getUloga().equals(Uloga.ADMINISTRATOR)){
+//            return new ResponseEntity<>("Ne moze se dodati admin!",HttpStatus.FORBIDDEN);
+//        }
         this.korisnikService.save(korisnik);
-        return  "Korisnik je uspesno sacuvan";
+        return  new ResponseEntity<>("Korisnik je uspesno sacuvan",HttpStatus.OK);
     }
 
     //brisanje korisnika

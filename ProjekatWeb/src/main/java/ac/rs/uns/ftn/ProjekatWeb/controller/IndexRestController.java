@@ -2,6 +2,7 @@ package ac.rs.uns.ftn.ProjekatWeb.controller;
 
 import ac.rs.uns.ftn.ProjekatWeb.dto.LoginDto;
 import ac.rs.uns.ftn.ProjekatWeb.dto.RegistrationDto;
+import ac.rs.uns.ftn.ProjekatWeb.entity.Uloga;
 import ac.rs.uns.ftn.ProjekatWeb.service.KorisnikService;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
 import jakarta.servlet.http.HttpSession;
@@ -63,16 +64,33 @@ public class IndexRestController {
     @PostMapping("/api/registracija")
     public ResponseEntity<String> saveKorisnik (@RequestBody RegistrationDto registrationDto){
 
-//        if (registrationDto.getLozinka() != registrationDto.getPotvrdaLozinke()){
-//            return new ResponseEntity<>("Lozinke se ne poklapaju!", HttpStatus.FORBIDDEN);
-//        }
+       if (registrationDto.getLozinka() == null){
+           return new ResponseEntity<>("Niste uneli lozinku", HttpStatus.BAD_REQUEST);
+       }
+
+
+        if (registrationDto.getPotvrdaLozinke() == null){
+            return new ResponseEntity<>("Niste uneli potvrdu lozinke", HttpStatus.BAD_REQUEST);
+        }
+
+        System.out.println("REYULTAT POREDJENJA "+registrationDto.getLozinka().equals(registrationDto.getPotvrdaLozinke()));
+
+        if (!registrationDto.getLozinka().equals(registrationDto.getPotvrdaLozinke())){
+            System.out.println("pass " + registrationDto.getLozinka() + " potvrda" + registrationDto.getPotvrdaLozinke());
+            return new ResponseEntity<>("Lozinke se ne poklapaju!", HttpStatus.FORBIDDEN);
+        }
 
         Korisnik k = new Korisnik();
         k.setIme(registrationDto.getIme());
         k.setPrezime(registrationDto.getPrezime());
-        k.setKorisnickoIme(registrationDto.getKorisnickoIme());
-        k.setEmail(registrationDto.getMail());
+        if(!k.setKorisnickoIme(registrationDto.getKorisnickoIme())){
+            return new ResponseEntity<>("Postoji korisnicko ime.", HttpStatus.BAD_REQUEST);
+        }
+       if (!k.setEmail(registrationDto.getMail())){
+           return new ResponseEntity<>("Postoji email.", HttpStatus.BAD_REQUEST);
+       }
         k.setLozinka(registrationDto.getLozinka());
+        k.setUloga(Uloga.CITALAC);
         korisnikService.save(k);
         return new ResponseEntity<>("Uspesno ste se registrovali", HttpStatus.OK);
     }

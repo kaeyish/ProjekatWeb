@@ -53,7 +53,7 @@ public class RegistrationDto {
     }
 
     public String getLozinka() {
-        return lozinka;
+        return this.lozinka;
     }
 
     public void setLozinka(String lozinka) {

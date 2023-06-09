@@ -1,6 +1,7 @@
 package ac.rs.uns.ftn.ProjekatWeb.entity;
 
 import jakarta.persistence.*;
+import org.springframework.core.io.buffer.DataBufferLimitException;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -103,18 +104,29 @@ public class Korisnik implements Serializable {
         return korisnickoIme;
     }
 
-    public void setKorisnickoIme(String korisnickoIme) {
-        this.korisnickoIme = korisnickoIme;
+    public boolean setKorisnickoIme(String korisnickoIme) {
+        try {
+            this.korisnickoIme = korisnickoIme;
+        }
+        catch (DataBufferLimitException exception){
+            return false;
+        }
+            return true;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String mail) {
-        this.email = mail;
+    public boolean setEmail(String mail) {
+        try {
+            this.email = mail;
+        }
+        catch (DataBufferLimitException e){
+            return false;
+        }
+        return true;
     }
-
     public String getLozinka() {
         return lozinka;
     }
