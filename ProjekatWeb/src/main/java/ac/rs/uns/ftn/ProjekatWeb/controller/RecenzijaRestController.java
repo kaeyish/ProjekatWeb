@@ -2,9 +2,11 @@ package ac.rs.uns.ftn.ProjekatWeb.controller;
 
 import ac.rs.uns.ftn.ProjekatWeb.dto.RecenzijaDto;
 import ac.rs.uns.ftn.ProjekatWeb.dto.ZahtevDto;
+import ac.rs.uns.ftn.ProjekatWeb.dto.ZanrDto;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Recenzija;
 import ac.rs.uns.ftn.ProjekatWeb.entity.ZahtevAktivacija;
+import ac.rs.uns.ftn.ProjekatWeb.entity.Zanr;
 import ac.rs.uns.ftn.ProjekatWeb.service.RecenzijaService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +97,42 @@ public class RecenzijaRestController {
         recenzijaService.delete(recenzija);
         return new ResponseEntity("Recenzija izbrisana", HttpStatus.OK);
     }
+
+    @GetMapping("/recenzije")
+    public ResponseEntity<List<RecenzijaDto>> getRecenzija (HttpSession session){
+        List<Recenzija> recenzijaList = recenzijaService.findAll();
+                Korisnik loggedKorisnik = (Korisnik) session.getAttribute("korisnik");
+                if(loggedKorisnik == null) {
+                    System.out.println("Nemate pristup!");
+                } else {
+                    System.out.println(loggedKorisnik.getIme());
+                }
+                List<RecenzijaDto> dtos = new ArrayList<>();
+                for (Recenzija recenzija: recenzijaList){
+                    RecenzijaDto dto = new RecenzijaDto(recenzija);
+                    dtos.add(dto);
+                }
+                return ResponseEntity.ok(dtos);
+
+    }
+    //@GetMapping("/api/korisnici")
+    //    public ResponseEntity<List<KorisnikDto>> getKorisnici(HttpSession session){
+    //        List<Korisnik> korisnikList = korisnikService.findAll();
+    //
+    //        Korisnik loggedKorisnik = (Korisnik) session.getAttribute("korisnik");
+    //        if(loggedKorisnik == null) {
+    //            System.out.println("Nemate pristup!");
+    //        } else {
+    //            System.out.println(loggedKorisnik.getIme());
+    //        }
+    //
+    //        List<KorisnikDto> dtos = new ArrayList<>();
+    //        for(Korisnik korisnik : korisnikList){
+    //            KorisnikDto dto = new KorisnikDto(korisnik);
+    //            dtos.add(dto);
+    //        }
+    //        return ResponseEntity.ok(dtos);
+    //    }
 
 
 }

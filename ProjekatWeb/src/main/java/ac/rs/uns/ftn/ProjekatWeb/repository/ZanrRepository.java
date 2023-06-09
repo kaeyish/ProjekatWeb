@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface ZanrRepository extends JpaRepository <Zanr, Long> {
     List<Zanr> findAll();
     Optional<Zanr> findAllById(Long id);
+
+    List<Zanr> findAllByNaziv(String naziv);
 }

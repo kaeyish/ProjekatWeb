@@ -28,4 +28,6 @@ public class ZanrService {
         zanrRepository.save(z);
         return z;
     }
+
+    public List<Zanr> findByNaziv (String n){return zanrRepository.findAllByNaziv(n);}
 }
