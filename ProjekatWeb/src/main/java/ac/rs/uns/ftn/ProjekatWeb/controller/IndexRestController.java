@@ -80,15 +80,23 @@ public class IndexRestController {
             return new ResponseEntity<>("Lozinke se ne poklapaju!", HttpStatus.FORBIDDEN);
         }
 
+        Korisnik postojeci = korisnikService.findByEmail(registrationDto.getMail());
+
+        if (postojeci != null){
+            return new ResponseEntity<>("Mejl vec postoji", HttpStatus.BAD_REQUEST);
+        }
+
+        Korisnik postojeci2= korisnikService.findByKorisnickoIme(registrationDto.getKorisnickoIme());
+
+        if (postojeci2 != null){
+            return new ResponseEntity<>("Mejl vec postoji", HttpStatus.BAD_REQUEST);
+        }
+
         Korisnik k = new Korisnik();
         k.setIme(registrationDto.getIme());
         k.setPrezime(registrationDto.getPrezime());
-        if(!k.setKorisnickoIme(registrationDto.getKorisnickoIme())){
-            return new ResponseEntity<>("Postoji korisnicko ime.", HttpStatus.BAD_REQUEST);
-        }
-       if (!k.setEmail(registrationDto.getMail())){
-           return new ResponseEntity<>("Postoji email.", HttpStatus.BAD_REQUEST);
-       }
+        k.setKorisnickoIme(registrationDto.getKorisnickoIme());
+       k.setEmail(registrationDto.getMail());
         k.setLozinka(registrationDto.getLozinka());
         k.setUloga(Uloga.CITALAC);
         korisnikService.save(k);

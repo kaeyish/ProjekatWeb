@@ -99,6 +99,7 @@ public class StavkaRestController {
             }
         }
 
+       if (polica.isPrimarna())
        if(this.stavkaService.proveriPrimarne(stavkaPolice)){
            return new ResponseEntity("Stavka sa datim imenom vec postoji na nekoj od primarnih.", HttpStatus.BAD_REQUEST);
        }
@@ -133,7 +134,7 @@ public class StavkaRestController {
             for(StavkaPolice stavka : stavke){
                 stavkaService.deleteStavka(stavka);
             }
-            return new ResponseEntity("Izbrisana.", HttpStatus.OK);
+            return new ResponseEntity("Izbrisana sa svih.", HttpStatus.OK);
         }
         stavkaService.deleteStavka(stavkaPolice);
         return new ResponseEntity("Izbrisana.", HttpStatus.OK);

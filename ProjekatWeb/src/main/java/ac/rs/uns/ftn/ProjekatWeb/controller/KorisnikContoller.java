@@ -146,7 +146,8 @@ public class KorisnikContoller {
 
             knjigaService.save(novaKnjiga);
         }
-        return new ResponseEntity<>("Nemate ovu mogucnost!",HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>("Knjiga je dodata",HttpStatus.OK
+        );
 
     }
 

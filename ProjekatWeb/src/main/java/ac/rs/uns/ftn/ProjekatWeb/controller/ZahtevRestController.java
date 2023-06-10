@@ -43,8 +43,8 @@ public class ZahtevRestController {
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping("/api/zahtevi/{id}")
-    public ResponseEntity<ZahtevDto> getZahtev(@PathVariable (name = "id") Long id, HttpSession session){
+    @GetMapping("/api/zahtevi/{id}/{korisnik_id}")
+    public ResponseEntity<ZahtevDto> getZahtev(@PathVariable (name = "id") Long id, @PathVariable(name = "korisnik_id") Long korisnik_id, HttpSession session){
         Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
@@ -117,6 +117,11 @@ public class ZahtevRestController {
             zahtevAktivacija.setStatus(Status.ODOBREN);
         }
 
+        Korisnik korisnik = new Korisnik();
+        {
+            korisnik.setEmail(zahtevAktivacija.getEmail());
+            korisnik.setUloga(Uloga.AUTOR);
+        }
         zahtevAktivacijaService.saveZahtev(zahtevAktivacija);
         return new ResponseEntity("odobren.", HttpStatus.OK);
 

@@ -45,4 +45,11 @@ public class KorisnikService {
     }
 
 
+    public Korisnik findByEmail(String mail) {
+        return korisnikRepository.getByEmail(mail);
+    }
+
+    public Korisnik findByKorisnickoIme(String korisnickoIme) {
+      return  korisnikRepository.findByKorisnickoIme(korisnickoIme);
+    }
 }

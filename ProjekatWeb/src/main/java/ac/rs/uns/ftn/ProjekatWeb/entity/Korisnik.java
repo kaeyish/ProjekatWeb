@@ -218,4 +218,6 @@ public class Korisnik implements Serializable {
                 ", ostalePolice=" + ostalePolice +
                 '}';
     }
+
+
 }
