@@ -17,9 +17,6 @@ public class CitalacDto {
     private Date datumRodjenja;
     private String profilnaSlika;
     private String opis;
-    private Polica wantToRead;
-    private Polica currentlyReading;
-    private Polica read;
     private Set<Polica> ostalePolice = new HashSet<>();
 
     public CitalacDto() {
@@ -35,9 +32,6 @@ public class CitalacDto {
         this.datumRodjenja = datumRodjenja;
         this.profilnaSlika = profilnaSlika;
         this.opis = opis;
-        this.wantToRead = wantToRead;
-        this.currentlyReading = currentlyReading;
-        this.read = read;
         this.ostalePolice = ostalePolice;
     }
 
@@ -51,9 +45,6 @@ public class CitalacDto {
         this.datumRodjenja = citalac.getDatumRodjenja();
         this.profilnaSlika = citalac.getProfilnaSlika();
         this.opis = citalac.getOpis();
-        this.wantToRead = citalac.getWantToRead();
-        this.currentlyReading = citalac.getCurrentlyReading();
-        this.read = citalac.getRead();
         this.ostalePolice = citalac.getOstalePolice();
     }
 
@@ -129,29 +120,6 @@ public class CitalacDto {
         this.opis = opis;
     }
 
-    public Polica getWantToRead() {
-        return wantToRead;
-    }
-
-    public void setWantToRead(Polica wantToRead) {
-        this.wantToRead = wantToRead;
-    }
-
-    public Polica getCurrentlyReading() {
-        return currentlyReading;
-    }
-
-    public void setCurrentlyReading(Polica currentlyReading) {
-        this.currentlyReading = currentlyReading;
-    }
-
-    public Polica getRead() {
-        return read;
-    }
-
-    public void setRead(Polica read) {
-        this.read = read;
-    }
 
     public Set<Polica> getOstalePolice() {
         return ostalePolice;

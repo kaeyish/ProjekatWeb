@@ -62,19 +62,22 @@ public class DatabaseConfiguration {
         StavkaPolice sp1 = new StavkaPolice(knjiga1,r1);
         //stavkaPoliceRepository.save(sp1);
 
-        Korisnik k1 = new Korisnik("Imenko","Prezimenko","korisnicko123","imenko@gmail.com","pass123", Date.from(Instant.now()),"profilna.com","ovo je neki opis", Uloga.CITALAC,p1,p2,p3);
-        Korisnik k2 = new Korisnik("Andjela","Petkovic","brownotter","andjela@gmail.com","lozinka123", Date.from(Instant.now()),"www.profilna.com","ovo moj je neki opis",Uloga.ADMINISTRATOR,p1,p2,p3);
+        Korisnik k1 = new Korisnik("Imenko","Prezimenko","korisnicko123","imenko@gmail.com","pass123", Date.from(Instant.now()),"profilna.com","ovo je neki opis", Uloga.CITALAC);
+        Korisnik k2 = new Korisnik("Andjela","Petkovic","brownotter","andjela@gmail.com","lozinka123", Date.from(Instant.now()),"www.profilna.com","ovo moj je neki opis",Uloga.ADMINISTRATOR);
+        Korisnik k3 = new Korisnik("Dusanka","Ignjatovic","kaeyish","ignjatovicdusanka02@gmail.com","lozinka123", Date.from(Instant.now()),"www.profilna.com","ovo moj je neki opis",Uloga.ADMINISTRATOR);
+
         korisnikRepository.save(k1);
         korisnikRepository.save(k2);
+        korisnikRepository.save(k3);
         r1.setKorisnik(k1);
 
         ZahtevAktivacija za1= new ZahtevAktivacija(Status.NA_CEKANJU,"mejl@gmail","060005500","Ovo je poruka",Date.from(Instant.now()));
         zahtevAktivacijaRepository.save(za1);
 
-        Citalac c1 = new Citalac("Ana","Anic","anana","aninmejl@hotmail.com","lozinka",Date.from(Instant.now()),"njenaslika.rs","Ovo je moj profil",Uloga.CITALAC,p1,p2,p3);
+        Citalac c1 = new Citalac("Ana","Anic","anana","aninmejl@hotmail.com","lozinka",Date.from(Instant.now()),"njenaslika.rs","Ovo je moj profil",Uloga.CITALAC);
         citalacRepository.save(c1);
 
-        Autor a1 = new Autor("J.R.R","Tolkien","jrrtolkien","jrr@tolkien.com","jrrpass",Date.from(Instant.now()),"JRRslika","Pisac knjiga",Uloga.AUTOR,p1,p2,p3,true);
+        Autor a1 = new Autor("J.R.R","Tolkien","jrrtolkien","jrr@tolkien.com","jrrpass",Date.from(Instant.now()),"JRRslika","Pisac knjiga",Uloga.AUTOR,true);
         autorRepository.save(a1);
         knjiga1.setAutor(a1);
         return true;

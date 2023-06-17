@@ -5,13 +5,16 @@ import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Status;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Uloga;
 import ac.rs.uns.ftn.ProjekatWeb.entity.ZahtevAktivacija;
+import ac.rs.uns.ftn.ProjekatWeb.service.SendMailService;
 import ac.rs.uns.ftn.ProjekatWeb.service.ZahtevAktivacijaService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +23,12 @@ public class ZahtevRestController {
 
     @Autowired
     private ZahtevAktivacijaService zahtevAktivacijaService;
+
+    @Autowired
+    private SendMailService sendMailService;
+
+    @Autowired
+    private KorisnikContoller korisnikContoller;
 
     @GetMapping("/api/zahtevi")
     public ResponseEntity<List<ZahtevDto>> getZahtevi (HttpSession session){
@@ -93,13 +102,15 @@ public class ZahtevRestController {
            zahtevAktivacija.setStatus(Status.ODBIJEN);
        }
 
+       sendMailService.sendMail(loggedUser.getEmail(), zahtevAktivacija.getEmail(), "Status Zahteva promenje", "Zahtev odbijen");
+
        zahtevAktivacijaService.saveZahtev(zahtevAktivacija);
         return new ResponseEntity("odbijen.", HttpStatus.OK);
 
    }
 
     @PutMapping ("/api/odobri-zahtev/{id}")
-    public ResponseEntity odobriZahtev (@PathVariable (name = "id") Long id, HttpSession session){
+    public ResponseEntity odobriZahtev (@PathVariable (name = "id") Long id, HttpSession session, HttpServletResponse response) throws IOException {
         Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
@@ -117,12 +128,13 @@ public class ZahtevRestController {
             zahtevAktivacija.setStatus(Status.ODOBREN);
         }
 
-        Korisnik korisnik = new Korisnik();
-        {
-            korisnik.setEmail(zahtevAktivacija.getEmail());
-            korisnik.setUloga(Uloga.AUTOR);
-        }
+
+        sendMailService.sendMail(loggedUser.getEmail(), zahtevAktivacija.getEmail(), "Status Zahteva promenjen", "Zahtev odobren");
+
         zahtevAktivacijaService.saveZahtev(zahtevAktivacija);
+
+        korisnikContoller.kreirajAutora(zahtevAktivacija,session);
+
         return new ResponseEntity("odobren.", HttpStatus.OK);
 
     }

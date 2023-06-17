@@ -20,9 +20,6 @@ public class KorisnikDto {
     private String profilnaSlika;
     private String opis;
     private Uloga uloga;
-    private Polica wantToRead;
-    private Polica currentlyReading;
-    private Polica read;
     private Set<Polica> ostalePolice = new HashSet<>();
 
     private String novaLozinka;
@@ -30,7 +27,7 @@ public class KorisnikDto {
     public KorisnikDto() {
     }
 
-    public KorisnikDto(Long id, String ime, String prezime, String korisnickoIme, String email, String lozinka, Date datumRodjenja, String profilnaSlika, String opis, Uloga uloga, Polica wantToRead, Polica currentlyReading, Polica read, Set<Polica> ostalePolice) {
+    public KorisnikDto(Long id, String ime, String prezime, String korisnickoIme, String email, String lozinka, Date datumRodjenja, String profilnaSlika, String opis, Uloga uloga,  Set<Polica> ostalePolice) {
         this.id = id;
         this.ime = ime;
         this.prezime = prezime;
@@ -41,9 +38,6 @@ public class KorisnikDto {
         this.profilnaSlika = profilnaSlika;
         this.opis = opis;
         this.uloga = uloga;
-        this.wantToRead = wantToRead;
-        this.currentlyReading = currentlyReading;
-        this.read = read;
         this.ostalePolice = ostalePolice;
     }
 
@@ -58,9 +52,6 @@ public class KorisnikDto {
         this.profilnaSlika = korisnik.getProfilnaSlika();
         this.opis = korisnik.getOpis();
         this.uloga = korisnik.getUloga();
-        this.wantToRead = korisnik.getWantToRead();
-        this.currentlyReading = korisnik.getCurrentlyReading();
-        this.read = korisnik.getRead();
         this.ostalePolice = korisnik.getOstalePolice();
     }
 
@@ -139,30 +130,6 @@ public class KorisnikDto {
     public Uloga getUloga() {return uloga;}
 
     public void setUloga(Uloga uloga) {this.uloga = uloga;}
-
-    public Polica getWantToRead() {
-        return wantToRead;
-    }
-
-    public void setWantToRead(Polica wantToRead) {
-        this.wantToRead = wantToRead;
-    }
-
-    public Polica getCurrentlyReading() {
-        return currentlyReading;
-    }
-
-    public void setCurrentlyReading(Polica currentlyReading) {
-        this.currentlyReading = currentlyReading;
-    }
-
-    public Polica getRead() {
-        return read;
-    }
-
-    public void setRead(Polica read) {
-        this.read = read;
-    }
 
     public Set<Polica> getOstalePolice() {
         return ostalePolice;

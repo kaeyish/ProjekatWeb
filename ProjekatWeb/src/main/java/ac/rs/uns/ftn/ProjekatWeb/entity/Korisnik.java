@@ -1,5 +1,6 @@
 package ac.rs.uns.ftn.ProjekatWeb.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.core.io.buffer.DataBufferLimitException;
 
@@ -44,16 +45,17 @@ public class Korisnik implements Serializable {
     private Uloga uloga;
 
     //police
-    @OneToOne
-    private Polica wantToRead;
+//    @OneToOne
+//    private Polica wantToRead;
+//
+//    @OneToOne
+//    private Polica currentlyReading;
+//
+//    @OneToOne
+//    private Polica read;
 
-    @OneToOne
-    private Polica currentlyReading;
-
-    @OneToOne
-    private Polica read;
-
-    @OneToMany (mappedBy = "korisnik", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToMany (mappedBy = "korisnik", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Set <Polica> ostalePolice = new HashSet<>();
 
 
@@ -61,7 +63,7 @@ public class Korisnik implements Serializable {
     }
 
 
-    public Korisnik(String ime, String prezime, String korisnickoIme, String email, String lozinka, Date datumRodjenja, String profilnaSlika, String opis, Uloga uloga, Polica wantToRead, Polica currentlyReading, Polica read) {
+    public Korisnik(String ime, String prezime, String korisnickoIme, String email, String lozinka, Date datumRodjenja, String profilnaSlika, String opis, Uloga uloga) {
         this.ime = ime;
         this.prezime = prezime;
         this.korisnickoIme = korisnickoIme;
@@ -71,10 +73,8 @@ public class Korisnik implements Serializable {
         this.profilnaSlika = profilnaSlika;
         this.opis = opis;
         this.uloga = uloga;
-        this.wantToRead = wantToRead;
-        this.currentlyReading = currentlyReading;
-        this.read = read;
-    }
+        this.ostalePolice = new HashSet<>();
+        }
 
     public Long getId() {
         return id;
@@ -104,28 +104,16 @@ public class Korisnik implements Serializable {
         return korisnickoIme;
     }
 
-    public boolean setKorisnickoIme(String korisnickoIme) {
-        try {
+    public void setKorisnickoIme(String korisnickoIme) {
             this.korisnickoIme = korisnickoIme;
-        }
-        catch (DataBufferLimitException exception){
-            return false;
-        }
-            return true;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public boolean setEmail(String mail) {
-        try {
-            this.email = mail;
-        }
-        catch (DataBufferLimitException e){
-            return false;
-        }
-        return true;
+    public void setEmail(String mail) {
+        this.email=mail;
     }
     public String getLozinka() {
         return lozinka;
@@ -167,29 +155,29 @@ public class Korisnik implements Serializable {
         this.uloga = uloga;
     }
 
-    public Polica getWantToRead() {
-        return wantToRead;
-    }
-
-    public void setWantToRead(Polica wantToRead) {
-        this.wantToRead = wantToRead;
-    }
-
-    public Polica getCurrentlyReading() {
-        return currentlyReading;
-    }
-
-    public void setCurrentlyReading(Polica currentlyReading) {
-        this.currentlyReading = currentlyReading;
-    }
-
-    public Polica getRead() {
-        return read;
-    }
-
-    public void setRead(Polica read) {
-        this.read = read;
-    }
+//    public Polica getWantToRead() {
+//        return wantToRead;
+//    }
+//
+//    public void setWantToRead(Polica wantToRead) {
+//        this.wantToRead = wantToRead;
+//    }
+//
+//    public Polica getCurrentlyReading() {
+//        return currentlyReading;
+//    }
+//
+//    public void setCurrentlyReading(Polica currentlyReading) {
+//        this.currentlyReading = currentlyReading;
+//    }
+//
+//    public Polica getRead() {
+//        return read;
+//    }
+//
+//    public void setRead(Polica read) {
+//        this.read = read;
+//    }
 
     public Set<Polica> getOstalePolice() {
         return ostalePolice;
@@ -212,10 +200,10 @@ public class Korisnik implements Serializable {
                 ", profilnaSlika='" + profilnaSlika + '\'' +
                 ", opis='" + opis + '\'' +
                 ", uloga=" + uloga +
-                ", wantToRead=" + wantToRead +
-                ", currentlyReading=" + currentlyReading +
-                ", read=" + read +
-                ", ostalePolice=" + ostalePolice +
+//                ", wantToRead=" + wantToRead +
+//                ", currentlyReading=" + currentlyReading +
+//                ", read=" + read +
+                ", police=" + ostalePolice +
                 '}';
     }
 

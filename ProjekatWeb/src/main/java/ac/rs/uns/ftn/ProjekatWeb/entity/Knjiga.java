@@ -1,5 +1,6 @@
 package ac.rs.uns.ftn.ProjekatWeb.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.io.Serializable;
@@ -38,7 +39,8 @@ public class Knjiga implements Serializable {
     private Zanr zanr;
 
     //povezivanje sa autorom
-    @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //@JsonBackReference
+    @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Autor autor;
 
     public Knjiga() {

@@ -1,5 +1,6 @@
 package ac.rs.uns.ftn.ProjekatWeb.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -31,7 +32,9 @@ public class Polica implements Serializable {
     private Set<StavkaPolice> stavkePolice = new HashSet<>();
 
     //povezivanje sa policom korisnika
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn (name = "korisnik_id")
     private Korisnik korisnik;
 

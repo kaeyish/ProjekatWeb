@@ -23,9 +23,6 @@ public class AutorDto {
     private boolean aktivnost;
     private Set<Knjiga> knjige = new HashSet<>();
 
-    private Polica wantToRead;
-    private Polica currentlyReading;
-    private Polica read;
     private Set<Polica> ostalePolice = new HashSet<>();
 
     public AutorDto() {
@@ -44,9 +41,6 @@ public class AutorDto {
         this.uloga = uloga;
         this.aktivnost = aktivnost;
         this.knjige = knjige;
-        this.wantToRead = wantToRead;
-        this.currentlyReading = currentlyReading;
-        this.read = read;
         this.ostalePolice = ostalePolice;
     }
 
@@ -63,9 +57,6 @@ public class AutorDto {
         this.uloga = autor.getUloga();
         this.aktivnost = autor.isAktivnost();
         this.knjige = autor.getKnjige();
-        this.wantToRead = autor.getWantToRead();
-        this.currentlyReading = autor.getCurrentlyReading();
-        this.read = autor.getRead();
         this.ostalePolice = autor.getOstalePolice();
     }
 
@@ -163,30 +154,6 @@ public class AutorDto {
 
     public void setKnjige(Set<Knjiga> knjige) {
         this.knjige = knjige;
-    }
-
-    public Polica getWantToRead() {
-        return wantToRead;
-    }
-
-    public void setWantToRead(Polica wantToRead) {
-        this.wantToRead = wantToRead;
-    }
-
-    public Polica getCurrentlyReading() {
-        return currentlyReading;
-    }
-
-    public void setCurrentlyReading(Polica currentlyReading) {
-        this.currentlyReading = currentlyReading;
-    }
-
-    public Polica getRead() {
-        return read;
-    }
-
-    public void setRead(Polica read) {
-        this.read = read;
     }
 
     public Set<Polica> getOstalePolice() {

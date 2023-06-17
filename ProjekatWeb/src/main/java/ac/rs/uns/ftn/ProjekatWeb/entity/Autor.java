@@ -1,10 +1,13 @@
 package ac.rs.uns.ftn.ProjekatWeb.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class Autor extends Korisnik {
@@ -12,7 +15,8 @@ public class Autor extends Korisnik {
     private boolean aktivnost;
 
     //spisak knjiga
-    @OneToMany (mappedBy = "autor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //@JsonManagedReference
+    @OneToMany (mappedBy = "autor", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Set <Knjiga> knjige = new HashSet<>();
 
     public Autor() {
@@ -23,9 +27,14 @@ public class Autor extends Korisnik {
         this.knjige = knjige;
     }
 
-    public Autor(String ime, String prezime, String korisnickoIme, String email, String lozinka, Date datumRodjenja, String profilnaSlika, String opis, Uloga uloga, Polica wantToRead, Polica currentlyReading, Polica read, boolean aktivnost) {
-        super( ime, prezime, korisnickoIme, email, lozinka, datumRodjenja, profilnaSlika, opis, uloga, wantToRead, currentlyReading, read);
+    public Autor(String ime, String prezime, String korisnickoIme, String email, String lozinka, Date datumRodjenja, String profilnaSlika, String opis, Uloga uloga, boolean aktivnost) {
+        super( ime, prezime, korisnickoIme, email, lozinka, datumRodjenja, profilnaSlika, opis, uloga);
         this.aktivnost = aktivnost;
+    }
+
+    public Autor(String email, String korisnicko_ime, String lozinka) {
+        super("","",korisnicko_ime,email,lozinka,Date.from(Instant.now()),"slika.com", "SVAKA CAST ZA AUTORA", Uloga.AUTOR);
+        this.aktivnost = true;
     }
 
     public boolean isAktivnost() {

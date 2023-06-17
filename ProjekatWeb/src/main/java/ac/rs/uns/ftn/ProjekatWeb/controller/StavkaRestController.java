@@ -80,8 +80,8 @@ public class StavkaRestController {
         return ResponseEntity.ok(dto);
     }
 
-    @PostMapping ("/nova-stavka/{id}")
-    public ResponseEntity saveStavka (@RequestBody StavkaPolice stavkaPolice, @PathVariable (name = "id") Long polica_id, HttpSession session){
+    @PostMapping ("/nova-stavka/{id}/{primarna_id}")
+    public ResponseEntity saveStavka (@RequestBody StavkaPolice stavkaPolice, @PathVariable (name = "id") Long polica_id, @PathVariable(name = "primarna_id") Long primarna_id, HttpSession session){
         Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (loggedUser == null){
@@ -89,6 +89,9 @@ public class StavkaRestController {
         }
 
         Polica polica = policaService.findOne(polica_id);
+        Polica policaPrimarna = policaService.findOne(primarna_id);
+
+        Set<StavkaPolice> stavkePrimarne = policaPrimarna.getStavkePolice();
         Set<StavkaPolice> stavkaList = polica.getStavkePolice();
 
         System.out.println(stavkaList);
@@ -99,15 +102,21 @@ public class StavkaRestController {
             }
         }
 
-       if (polica.isPrimarna())
        if(this.stavkaService.proveriPrimarne(stavkaPolice)){
            return new ResponseEntity("Stavka sa datim imenom vec postoji na nekoj od primarnih.", HttpStatus.BAD_REQUEST);
        }
 
+
+
         this.stavkaService.saveStavka(stavkaPolice);
         stavkaList.add(stavkaPolice);
+        stavkePrimarne.add(stavkaPolice);
+
         polica.setStavkePolice(stavkaList);
+        policaPrimarna.setStavkePolice(stavkePrimarne);
+
         policaService.savePolica(polica);
+        policaService.savePolica(policaPrimarna);
         return new ResponseEntity("Dodata na policu.", HttpStatus.OK);
 
     }

@@ -27,10 +27,10 @@ public class IndexRestController {
 
     @PostMapping("api/login")
     public ResponseEntity<String> login (@RequestBody LoginDto logInDto, HttpSession session){
-        if (logInDto.getEmail().isEmpty()){
+        if (logInDto.getEmail()==null){
             return new ResponseEntity<>("Nepostojece korisnicko ime.", HttpStatus.BAD_REQUEST);
         }
-        if (logInDto.getLozinka().isEmpty()){
+        if (logInDto.getLozinka()==null){
             return new ResponseEntity<>("Niste uneli sifru.", HttpStatus.BAD_REQUEST);
         }
 
@@ -73,7 +73,7 @@ public class IndexRestController {
             return new ResponseEntity<>("Niste uneli potvrdu lozinke", HttpStatus.BAD_REQUEST);
         }
 
-        System.out.println("REYULTAT POREDJENJA "+registrationDto.getLozinka().equals(registrationDto.getPotvrdaLozinke()));
+        System.out.println("REZULTAT POREDJENJA "+registrationDto.getLozinka().equals(registrationDto.getPotvrdaLozinke()));
 
         if (!registrationDto.getLozinka().equals(registrationDto.getPotvrdaLozinke())){
             System.out.println("pass " + registrationDto.getLozinka() + " potvrda" + registrationDto.getPotvrdaLozinke());
@@ -92,15 +92,16 @@ public class IndexRestController {
             return new ResponseEntity<>("Mejl vec postoji", HttpStatus.BAD_REQUEST);
         }
 
-        Korisnik k = new Korisnik();
-        k.setIme(registrationDto.getIme());
-        k.setPrezime(registrationDto.getPrezime());
-        k.setKorisnickoIme(registrationDto.getKorisnickoIme());
-       k.setEmail(registrationDto.getMail());
-        k.setLozinka(registrationDto.getLozinka());
-        k.setUloga(Uloga.CITALAC);
-        korisnikService.save(k);
-        return new ResponseEntity<>("Uspesno ste se registrovali", HttpStatus.OK);
+        korisnikService.register(registrationDto);
+//        Korisnik k = new Korisnik();
+//        k.setIme(registrationDto.getIme());
+//        k.setPrezime(registrationDto.getPrezime());
+//        k.setKorisnickoIme(registrationDto.getKorisnickoIme());
+//       k.setEmail(registrationDto.getMail());
+//        k.setLozinka(registrationDto.getLozinka());
+//        k.setUloga(Uloga.CITALAC);
+//        korisnikService.save(k);
+       return new ResponseEntity<>("Uspesno ste se registrovali", HttpStatus.OK);
     }
 
 }

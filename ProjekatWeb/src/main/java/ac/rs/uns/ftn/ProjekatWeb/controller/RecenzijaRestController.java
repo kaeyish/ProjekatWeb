@@ -1,13 +1,8 @@
 package ac.rs.uns.ftn.ProjekatWeb.controller;
 
 import ac.rs.uns.ftn.ProjekatWeb.dto.RecenzijaDto;
-import ac.rs.uns.ftn.ProjekatWeb.dto.ZahtevDto;
-import ac.rs.uns.ftn.ProjekatWeb.dto.ZanrDto;
-import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
-import ac.rs.uns.ftn.ProjekatWeb.entity.Recenzija;
-import ac.rs.uns.ftn.ProjekatWeb.entity.ZahtevAktivacija;
-import ac.rs.uns.ftn.ProjekatWeb.entity.Zanr;
-import ac.rs.uns.ftn.ProjekatWeb.service.RecenzijaService;
+import ac.rs.uns.ftn.ProjekatWeb.entity.*;
+import ac.rs.uns.ftn.ProjekatWeb.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,12 +11,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class RecenzijaRestController {
 
     @Autowired
     private RecenzijaService recenzijaService;
+
+    @Autowired
+    private StavkaService stavkaPoliceService;
+
+    @Autowired
+    private KnjigaService knjigaService;
 
     @GetMapping("/recenzije/{id}")
     public ResponseEntity<RecenzijaDto> getRecenzija (@PathVariable (name = "id") Long id){
@@ -46,6 +48,31 @@ public class RecenzijaRestController {
         }
         return ResponseEntity.ok(dtos);
     }
+
+    @GetMapping ("/api/recenzije-knjige/{knjiga_id}")
+    public ResponseEntity<List<RecenzijaDto>> getRecenzijeKnjiga(@PathVariable (name = "knjiga_id") Long knjiga_id){
+        Optional<Knjiga> knjigaOptional = knjigaService.finOne(knjiga_id);
+
+        if (!knjigaOptional.isPresent()){
+            return new ResponseEntity("Knjiga ne postoji", HttpStatus.NOT_FOUND);
+        }
+
+        Knjiga knjiga = knjigaOptional.get();
+        List <StavkaPolice> lista = stavkaPoliceService.findAllByKnjiga(knjiga);
+
+        if (lista.isEmpty()){
+            return new ResponseEntity("Nema recenzija", HttpStatus.NOT_FOUND);
+        }
+
+
+        List<RecenzijaDto> dtos = new ArrayList<>();
+        for (StavkaPolice stavka: lista){
+            RecenzijaDto dto = new RecenzijaDto(stavka.getRecenzija());
+            dtos.add(dto);
+        }
+        return ResponseEntity.ok(dtos);
+    }
+
 
     @PostMapping ("/nova-recenzija")
     public ResponseEntity saveRecenzija (@RequestBody Recenzija recenzija, HttpSession session){

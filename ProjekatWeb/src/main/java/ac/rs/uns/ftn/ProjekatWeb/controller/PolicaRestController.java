@@ -28,11 +28,8 @@ public class PolicaRestController {
     public ResponseEntity<List<PolicaDto>> getPolice(@PathVariable (name = "korisnik_id") Long korisnik_id){
 
         Korisnik korisnik = korisnikService.findOne(korisnik_id);
-        Set<Polica> police = korisnik.getOstalePolice();
+        List<Polica> police = policaService.findAllByKorisnik(korisnik);
 
-        police.add(korisnik.getCurrentlyReading());
-        police.add(korisnik.getRead());
-        police.add(korisnik.getWantToRead());
 
         if (police.isEmpty()){
             return new ResponseEntity("Nema polica.", HttpStatus.NOT_FOUND);
@@ -55,6 +52,12 @@ public class PolicaRestController {
         if (loggedUser.getUloga() != Uloga.ADMINISTRATOR){
             return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
         }
+
+        if (loggedUser == null){
+            return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
+        }
+
+
 
         List<Polica> police = policaService.findAll();
         List<PolicaDto> dtos = new ArrayList<>();

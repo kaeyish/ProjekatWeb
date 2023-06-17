@@ -10,15 +10,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 public class KorisnikContoller {
     @Autowired
     private KorisnikService korisnikService;
+
+    @Autowired
+    private PolicaService policaService;
     @Autowired
     private AutorService autorService;
     @Autowired
@@ -54,9 +54,6 @@ public class KorisnikContoller {
                 korisnik.getProfilnaSlika(),
                 korisnik.getOpis(),
                 korisnik.getUloga(),
-                korisnik.getWantToRead(),
-                korisnik.getCurrentlyReading(),
-                korisnik.getRead(),
                 korisnik.getOstalePolice()
         );
         return new ResponseEntity<>(kdto, HttpStatus.OK);
@@ -84,12 +81,36 @@ public class KorisnikContoller {
 
     //dodavanje korisnika
     @PostMapping("/api/korisnik/save")
-    public ResponseEntity<String> saveKorisnik (@RequestBody Korisnik korisnik){
+    public ResponseEntity<String> saveKorisnik (@RequestBody Autor autor){
 //        if (korisnik.getUloga().equals(Uloga.ADMINISTRATOR)){
 //            return new ResponseEntity<>("Ne moze se dodati admin!",HttpStatus.FORBIDDEN);
 //        }
-        this.korisnikService.save(korisnik);
-        return  new ResponseEntity<>("Korisnik je uspesno sacuvan",HttpStatus.OK);
+        Polica read = new Polica("Read", true);
+        Polica currently_reading = new Polica("Currently Reading", true);
+        Polica want_to_read = new Polica("Want to Read", true);
+
+        policaService.savePolica(read);
+        policaService.savePolica(currently_reading);
+        policaService.savePolica(want_to_read);
+
+        read.setKorisnik(autor);
+        currently_reading.setKorisnik(autor);
+        want_to_read.setKorisnik(autor);
+
+        Set<Polica> police = autor.getOstalePolice();
+
+        police.add(read);
+        police.add(currently_reading);
+        police.add(want_to_read);
+
+        autor.setOstalePolice(police);
+
+        autor.setAktivnost(false);
+
+        autor.setUloga(Uloga.AUTOR);
+
+        this.korisnikService.save(autor);
+        return  new ResponseEntity<>("Neaktivni autor je uspesno sacuvan",HttpStatus.OK);
     }
 
     //brisanje korisnika
@@ -179,13 +200,18 @@ public class KorisnikContoller {
 
     //admin dodaje autora i aktivira mu nalog
     @PostMapping("/api/korisnik/kreiranjeAutora")
-    public ResponseEntity <String> kreirajAutora(@RequestBody AutorDto autorDto, HttpSession session){
+    public ResponseEntity <String> kreirajAutora(@RequestBody ZahtevAktivacija zahtevAktivacija, HttpSession session){
         Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
         if (prijavljeniKorisnik == null){
             return new ResponseEntity<>("Nemate pristup!",HttpStatus.NOT_FOUND);
         }
         if (prijavljeniKorisnik.getUloga().equals(Uloga.ADMINISTRATOR)){
-            autorService.kreirajAutora(autorDto.getIme(), autorDto.getPrezime(), autorDto.getKorisnickoIme(),autorDto.getEmail(),autorDto.getLozinka(),autorDto.getDatumRodjenja(),autorDto.getProfilnaSlika(),autorDto.getOpis(),autorDto.getUloga(),autorDto.getWantToRead(),autorDto.getCurrentlyReading(),autorDto.getRead(),autorDto.isAktivnost());
+            String korisnicko_ime = UUID.randomUUID().toString().substring(0,7);
+            String lozinka = UUID.randomUUID().toString().substring(0,7);
+
+            autorService.aktivirajAutora(zahtevAktivacija.getAutor(),zahtevAktivacija.getEmail(), korisnicko_ime,lozinka);
+
+
             return new ResponseEntity<>("Autor je uspesno kreiran!",HttpStatus.OK);
         }
         return new ResponseEntity<>("Ova opcija je dozvoljena samo administratorima!",HttpStatus.FORBIDDEN);
@@ -277,9 +303,6 @@ public class KorisnikContoller {
                 a.setDatumRodjenja(autorDto.getDatumRodjenja() == null ? a.getDatumRodjenja() :autorDto.getDatumRodjenja());
                 a.setOpis(autorDto.getOpis() == null ? a.getOpis() : autorDto.getOpis());
                 a.setProfilnaSlika(autorDto.getProfilnaSlika() == null ? a.getProfilnaSlika() : autorDto.getProfilnaSlika());
-                a.setCurrentlyReading(autorDto.getCurrentlyReading() == null ? a.getCurrentlyReading() : autorDto.getCurrentlyReading());
-                a.setRead(autorDto.getRead() == null ? a.getWantToRead() : autorDto.getRead());
-                a.setWantToRead(autorDto.getWantToRead() == null ? a.getWantToRead() : autorDto.getWantToRead());
                 a.setKnjige(autorDto.getKnjige() == null ? a.getKnjige() : autorDto.getKnjige());
                 a.setAktivnost(autorDto.isAktivnost());
                 return new ResponseEntity<>("Uspesno promenuti podaci citalaca", HttpStatus.OK);
