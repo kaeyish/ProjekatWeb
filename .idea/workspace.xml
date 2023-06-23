@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3474edbc-a83e-408d-ab05-9281cf8720e1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/IndexRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/IndexRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KnjigaContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KnjigaContoller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KorisnikContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KorisnikContoller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/PolicaRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/PolicaRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/RecenzijaRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/RecenzijaRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/StavkaRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/StavkaRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/ZahtevRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/ZahtevRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/ZanrContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/ZanrContoller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/dto/RegistrationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/dto/RegistrationDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HelloWorld.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2RNPLemnEgYy0vAqdFZdUTy0LzS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/web/devete vezbe/domaci/demo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;spring&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;4f4e065d1ba012a2f4480512af728483&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn spring-boot:run" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="ProjekatWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ProjekatWeb" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ac.rs.uns.ftn.ProjekatWeb.ProjekatWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3474edbc-a83e-408d-ab05-9281cf8720e1" name="Changes" comment="" />
+      <created>1687087516008</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687087516008</updated>
+      <workItem from="1687087517424" duration="2562000" />
+      <workItem from="1687108235271" duration="3614000" />
+      <workItem from="1687266401794" duration="33000" />
+      <workItem from="1687266442917" duration="9477000" />
+      <workItem from="1687379468325" duration="7215000" />
+      <workItem from="1687407152428" duration="582000" />
+      <workItem from="1687448805182" duration="7778000" />
+      <workItem from="1687466635418" duration="713000" />
+      <workItem from="1687475273912" duration="7321000" />
+      <workItem from="1687490547347" duration="1455000" />
+      <workItem from="1687522735204" duration="4374000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

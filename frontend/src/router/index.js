@@ -1,5 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import IndexView from '../views/IndexView.vue'
+import LogInView from '../views/LogInView.vue'
+import LoggedProfile from '../views/LoggedProfile.vue'
+import KorisnikView from '../views/KorisnikView.vue'
+import KnjigeView from '../views/KnjigeView.vue'
+import ZahtevView from '../views/ZahtevView.vue'
+import RegisterView from '../views/RegisterView.vue'
+
 
 const routes = [
   {
@@ -8,12 +16,39 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path:'/index',
+    name: 'index',
+    component: IndexView
+  },
+  {
+    path:'/register',
+    name:'register',
+    component: RegisterView
+  },
+  {
+    path: '/knjige',
+    name: 'knjige',
+    component: KnjigeView
+  },
+  {
+    path:'/userProfile',
+    name:'userProfile',
+    component: LoggedProfile
+  },
+  {
+    path:'/korisnik/:id',
+    name:'korisnik',
+    component: KorisnikView
+  },
+  {
+    path:'/zahtev/:id/:korisnik_id',
+    name: 'zahtev',
+    component: ZahtevView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LogInView
   }
 ]
 

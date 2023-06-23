@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
+
 public class KnjigaContoller {
     @Autowired
     private KnjigaService knjigaService;

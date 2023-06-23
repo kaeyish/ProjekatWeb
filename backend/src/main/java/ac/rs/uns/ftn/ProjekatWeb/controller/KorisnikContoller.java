@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
+@CrossOrigin
+
 public class KorisnikContoller {
     @Autowired
     private KorisnikService korisnikService;
@@ -36,6 +38,7 @@ public class KorisnikContoller {
     }
 
     //neprijavljeni vidi korisnika, zanrove, police, recnezije, knjige
+
     //prikaz korisnik po id
     @GetMapping ("/api/korisnik/{id}")
     public ResponseEntity <KorisnikDto> getKorisnik (@PathVariable Long id){

@@ -10,12 +10,10 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 public class IndexRestController {
 
     @Autowired
@@ -45,10 +43,13 @@ public class IndexRestController {
             return new ResponseEntity("korisnik", HttpStatus.NOT_FOUND);
         }
 
+        KorisnikDto dto = new KorisnikDto(loggedUser);
+
         session.setAttribute("korisnik", loggedUser);
-        return new ResponseEntity("Uspesno ulogovano.", HttpStatus.OK);
+        return new ResponseEntity(dto, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "localhost:8081/index")
     @PostMapping("api/logout")
     public ResponseEntity<KorisnikDto> logout(HttpSession session){
         Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
@@ -58,8 +59,8 @@ public class IndexRestController {
         }
 
         session.invalidate();
-
-        return new  ResponseEntity("Uspesno odjavljeno.", HttpStatus.OK);
+        KorisnikDto dto = new KorisnikDto(loggedUser);
+        return new  ResponseEntity(loggedUser, HttpStatus.OK);
     }
 
     @PostMapping("/api/registracija")
@@ -90,19 +91,20 @@ public class IndexRestController {
         Korisnik postojeci2= korisnikService.findByKorisnickoIme(registrationDto.getKorisnickoIme());
 
         if (postojeci2 != null){
-            return new ResponseEntity("Mejl vec postoji", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("Korisnicko ime vec postoji vec postoji", HttpStatus.BAD_REQUEST);
         }
 
         korisnikService.register(registrationDto);
-//        Korisnik k = new Korisnik();
-//        k.setIme(registrationDto.getIme());
-//        k.setPrezime(registrationDto.getPrezime());
-//        k.setKorisnickoIme(registrationDto.getKorisnickoIme());
-//       k.setEmail(registrationDto.getMail());
-//        k.setLozinka(registrationDto.getLozinka());
-//        k.setUloga(Uloga.CITALAC);
-//        korisnikService.save(k);
-        return new ResponseEntity("Uspesno ste se registrovali", HttpStatus.OK);
+        Korisnik k = new Korisnik();
+        k.setIme(registrationDto.getIme());
+        k.setPrezime(registrationDto.getPrezime());
+        k.setKorisnickoIme(registrationDto.getKorisnickoIme());
+       k.setEmail(registrationDto.getMail());
+        k.setLozinka(registrationDto.getLozinka());
+        k.setUloga(Uloga.CITALAC);
+        KorisnikDto dto = new KorisnikDto(k);
+
+        return new ResponseEntity(dto, HttpStatus.OK);
     }
 
 }

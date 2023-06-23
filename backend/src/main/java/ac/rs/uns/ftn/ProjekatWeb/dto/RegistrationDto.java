@@ -4,7 +4,7 @@ public class RegistrationDto {
     private String ime;
     private String prezime;
     private String korisnickoIme;
-    private String mail;
+    private String email;
     private String lozinka;
     private String potvrdaLozinke;
 
@@ -15,7 +15,7 @@ public class RegistrationDto {
         this.ime = ime;
         this.prezime = prezime;
         this.korisnickoIme = korisnickoIme;
-        this.mail = mail;
+        this.email = email;
         this.lozinka = lozinka;
         this.potvrdaLozinke = potvrdaLozinke;
     }
@@ -45,11 +45,11 @@ public class RegistrationDto {
     }
 
     public String getMail() {
-        return mail;
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setMail(String email) {
+        this.email = email;
     }
 
     public String getLozinka() {

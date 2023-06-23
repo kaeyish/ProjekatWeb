@@ -1,9 +1,15 @@
+
+
 <template>
+  
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <!-- <router-link to="/">Home</router-link> | -->
+    <router-link to="/index">Index</router-link> |
+    <router-link to="/login">LogIn</router-link> |
+    <router-link to="/register">Register</router-link>   
   </nav>
   <router-view/>
+
 </template>
 
 <style>
@@ -21,10 +27,15 @@ nav {
 
 nav a {
   font-weight: bold;
+  /* float: left; */
   color: #2c3e50;
 }
 
+#logout-b{
+  float:right;
+}
+
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #c9b38d;
 }
 </style>
