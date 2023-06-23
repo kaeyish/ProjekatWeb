@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
+@CrossOrigin
+
 public class KorisnikContoller {
     @Autowired
     private KorisnikService korisnikService;
@@ -36,6 +38,7 @@ public class KorisnikContoller {
     }
 
     //neprijavljeni vidi korisnika, zanrove, police, recnezije, knjige
+
     //prikaz korisnik po id
     @GetMapping ("/api/korisnik/{id}")
     public ResponseEntity <KorisnikDto> getKorisnik (@PathVariable Long id){
@@ -64,12 +67,12 @@ public class KorisnikContoller {
     public ResponseEntity<List<KorisnikDto>> getKorisnici(HttpSession session){
         List<Korisnik> korisnikList = korisnikService.findAll();
 
-        Korisnik loggedKorisnik = (Korisnik) session.getAttribute("korisnik");
-        if(loggedKorisnik == null) {
-            System.out.println("Nemate pristup!");
-        } else {
-            System.out.println(loggedKorisnik.getIme());
-        }
+//        Korisnik loggedKorisnik = (Korisnik) session.getAttribute("korisnik");
+//        if(loggedKorisnik == null) {
+//            System.out.println("Nemate pristup!");
+//        } else {
+//            System.out.println(loggedKorisnik.getIme());
+//        }
 
         List<KorisnikDto> dtos = new ArrayList<>();
         for(Korisnik korisnik : korisnikList){

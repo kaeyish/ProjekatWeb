@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
+@CrossOrigin
+
 public class StavkaRestController {
     @Autowired
     private StavkaService stavkaService;
@@ -102,9 +104,9 @@ public class StavkaRestController {
             }
         }
 
-       if(this.stavkaService.proveriPrimarne(stavkaPolice)){
-           return new ResponseEntity("Stavka sa datim imenom vec postoji na nekoj od primarnih.", HttpStatus.BAD_REQUEST);
-       }
+        if(this.stavkaService.proveriPrimarne(stavkaPolice)){
+            return new ResponseEntity("Stavka sa datim imenom vec postoji na nekoj od primarnih.", HttpStatus.BAD_REQUEST);
+        }
 
 
 

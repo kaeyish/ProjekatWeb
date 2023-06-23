@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
+
 public class RecenzijaRestController {
 
     @Autowired
@@ -129,18 +131,18 @@ public class RecenzijaRestController {
     @GetMapping("/recenzije")
     public ResponseEntity<List<RecenzijaDto>> getRecenzija (HttpSession session){
         List<Recenzija> recenzijaList = recenzijaService.findAll();
-                Korisnik loggedKorisnik = (Korisnik) session.getAttribute("korisnik");
-                if(loggedKorisnik == null) {
-                    System.out.println("Nemate pristup!");
-                } else {
-                    System.out.println(loggedKorisnik.getIme());
-                }
-                List<RecenzijaDto> dtos = new ArrayList<>();
-                for (Recenzija recenzija: recenzijaList){
-                    RecenzijaDto dto = new RecenzijaDto(recenzija);
-                    dtos.add(dto);
-                }
-                return ResponseEntity.ok(dtos);
+        Korisnik loggedKorisnik = (Korisnik) session.getAttribute("korisnik");
+        if(loggedKorisnik == null) {
+            System.out.println("Nemate pristup!");
+        } else {
+            System.out.println(loggedKorisnik.getIme());
+        }
+        List<RecenzijaDto> dtos = new ArrayList<>();
+        for (Recenzija recenzija: recenzijaList){
+            RecenzijaDto dto = new RecenzijaDto(recenzija);
+            dtos.add(dto);
+        }
+        return ResponseEntity.ok(dtos);
 
     }
 

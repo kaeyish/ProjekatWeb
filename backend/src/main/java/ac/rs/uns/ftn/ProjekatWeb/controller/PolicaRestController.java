@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
+@CrossOrigin
+
 public class PolicaRestController {
 
     @Autowired

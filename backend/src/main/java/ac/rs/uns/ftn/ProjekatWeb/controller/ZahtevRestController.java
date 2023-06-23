@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
+
 public class ZahtevRestController {
 
     @Autowired
@@ -83,31 +85,31 @@ public class ZahtevRestController {
 
     }
 
-   @PutMapping ("/api/odbij-zahtev/{id}")
-   public ResponseEntity odbijZahtev (@PathVariable (name = "id") Long id, HttpSession session){
-       Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
+    @PutMapping ("/api/odbij-zahtev/{id}")
+    public ResponseEntity odbijZahtev (@PathVariable (name = "id") Long id, HttpSession session){
+        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
-       if (loggedUser == null){
-           System.out.println("Nema sesije");
-           return new ResponseEntity("Forbidden", HttpStatus.FORBIDDEN);
-       }
+        if (loggedUser == null){
+            System.out.println("Nema sesije");
+            return new ResponseEntity("Forbidden", HttpStatus.FORBIDDEN);
+        }
 
-       if(loggedUser.getUloga()!= Uloga.ADMINISTRATOR){
-           return new ResponseEntity("Forbidden", HttpStatus.FORBIDDEN);
-       }
+        if(loggedUser.getUloga()!= Uloga.ADMINISTRATOR){
+            return new ResponseEntity("Forbidden", HttpStatus.FORBIDDEN);
+        }
 
-       ZahtevAktivacija zahtevAktivacija = zahtevAktivacijaService.findOne(id);
+        ZahtevAktivacija zahtevAktivacija = zahtevAktivacijaService.findOne(id);
 
-       {
-           zahtevAktivacija.setStatus(Status.ODBIJEN);
-       }
+        {
+            zahtevAktivacija.setStatus(Status.ODBIJEN);
+        }
 
-       sendMailService.sendMail(loggedUser.getEmail(), zahtevAktivacija.getEmail(), "Status Zahteva promenje", "Zahtev odbijen");
+        sendMailService.sendMail(loggedUser.getEmail(), zahtevAktivacija.getEmail(), "Status Zahteva promenje", "Zahtev odbijen");
 
-       zahtevAktivacijaService.saveZahtev(zahtevAktivacija);
+        zahtevAktivacijaService.saveZahtev(zahtevAktivacija);
         return new ResponseEntity("odbijen.", HttpStatus.OK);
 
-   }
+    }
 
     @PutMapping ("/api/odobri-zahtev/{id}")
     public ResponseEntity odobriZahtev (@PathVariable (name = "id") Long id, HttpSession session, HttpServletResponse response) throws IOException {
