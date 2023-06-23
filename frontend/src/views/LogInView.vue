@@ -53,7 +53,7 @@ export default{
         })
         .then((data) => {
           console.log(data);
-            this.$router.push('/userProfile');
+            this.$router.push('/korisnik/'+data.id);
         })
         .catch((err) => {
           console.log(err);

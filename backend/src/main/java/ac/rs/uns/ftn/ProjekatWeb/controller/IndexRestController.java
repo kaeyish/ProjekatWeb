@@ -26,6 +26,13 @@ public class IndexRestController {
 
     @PostMapping("api/login")
     public ResponseEntity<KorisnikDto> login (@RequestBody LoginDto logInDto, HttpSession session){
+
+        Korisnik PREloggedUser = (Korisnik) session.getAttribute("korisnik");
+
+        if (PREloggedUser != null){
+            return new ResponseEntity("Forbidden", HttpStatus.FORBIDDEN);
+        }
+
         if (logInDto.getEmail()==null){
             return new ResponseEntity("Nepostojece korisnicko ime.", HttpStatus.BAD_REQUEST);
         }

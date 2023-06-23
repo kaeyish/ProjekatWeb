@@ -5,6 +5,7 @@ import LogInView from '../views/LogInView.vue'
 import LoggedProfile from '../views/LoggedProfile.vue'
 import KorisnikView from '../views/KorisnikView.vue'
 import KnjigeView from '../views/KnjigeView.vue'
+import KnjigaView from '../views/KnjigaView.vue'
 import ZahtevView from '../views/ZahtevView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import SviKorisnici from '../views/SviKorisnici.vue'
@@ -44,6 +45,11 @@ const routes = [
     path:'/korisnik/:id',
     name:'korisnik',
     component: KorisnikView
+  },
+  {
+    path:'/knjige/:id',
+    name:'knjiga',
+    component: KnjigaView
   },
   {
     path:'/zahtev/:id/:korisnik_id',

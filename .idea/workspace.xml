@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3474edbc-a83e-408d-ab05-9281cf8720e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KorisnikContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KorisnikContoller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/KorisnikView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/KorisnikView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/SviKorisnici.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/SviKorisnici.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/configuration/DatabaseConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/configuration/DatabaseConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/IndexRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/IndexRestController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +93,7 @@
       <workItem from="1687490547347" duration="1455000" />
       <workItem from="1687522735204" duration="6116000" />
       <workItem from="1687537623138" duration="1215000" />
+      <workItem from="1687541338038" duration="9555000" />
     </task>
     <servers />
   </component>
