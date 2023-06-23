@@ -9,7 +9,7 @@
     <div class="title-total">   
       <div class="title">{{korisnik.uloga}}</div>
       <h2>{{korisnik.ime}} {{korisnik.prezime}}</h2>
-      <h6>datum rodjenja nije naj funkcionalniji: {{ korisnik.datumRodjenja }}</h6>
+      <h6>datum rodjenja nije najfunkcionalniji: {{ korisnik.datumRodjenja }}</h6>
   
   <div class="desc">{{ korisnik.opis }}</div>
   </div>

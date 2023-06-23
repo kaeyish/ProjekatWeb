@@ -7,13 +7,18 @@ import KorisnikView from '../views/KorisnikView.vue'
 import KnjigeView from '../views/KnjigeView.vue'
 import ZahtevView from '../views/ZahtevView.vue'
 import RegisterView from '../views/RegisterView.vue'
-
+import SviKorisnici from '../views/SviKorisnici.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path:'/korisnici',
+    name:'korisnici',
+    component: SviKorisnici
   },
   {
     path:'/index',

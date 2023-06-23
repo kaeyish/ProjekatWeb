@@ -67,12 +67,12 @@ public class KorisnikContoller {
     public ResponseEntity<List<KorisnikDto>> getKorisnici(HttpSession session){
         List<Korisnik> korisnikList = korisnikService.findAll();
 
-        Korisnik loggedKorisnik = (Korisnik) session.getAttribute("korisnik");
-        if(loggedKorisnik == null) {
-            System.out.println("Nemate pristup!");
-        } else {
-            System.out.println(loggedKorisnik.getIme());
-        }
+//        Korisnik loggedKorisnik = (Korisnik) session.getAttribute("korisnik");
+//        if(loggedKorisnik == null) {
+//            System.out.println("Nemate pristup!");
+//        } else {
+//            System.out.println(loggedKorisnik.getIme());
+//        }
 
         List<KorisnikDto> dtos = new ArrayList<>();
         for(Korisnik korisnik : korisnikList){

@@ -1,22 +1,24 @@
 <template>
-    <div id="sveKnjige">
+    <div id="sviKorisnici">
 
-        KNJIGE U BAZI:
+        Korisnici U BAZI:
 
-        <li v-for="korisnik in korisnici"
-            :key="korisnik.id"
-            :korisnik="korisnik">
-            {{ korisnik.ime }}
-    </li>
+        <korisnik-comp v-for="user of users"
+            :key="user.id"
+            :user="user">
+             {{ user.ime }}
+        </korisnik-comp>
     </div>
   </template>
     
     <script>
+    import KorisnikComp from '@/components/KorisnikComp.vue';
     export default{
-        name: 'KorisniciView',   
+        name: 'SviKorisnici',   
+        components: {KorisnikComp}, 
         data: function() {
             return {
-                korisnici: [],
+                users: [],
             }
         },
         mounted: function () {
@@ -26,7 +28,7 @@
                 .catch((error) => {
                     console.error("Error:", error);
                 });    
-        }
+        },
     
     }
     </script>

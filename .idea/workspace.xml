@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3474edbc-a83e-408d-ab05-9281cf8720e1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/IndexRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/IndexRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KnjigaContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KnjigaContoller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KorisnikContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KorisnikContoller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/PolicaRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/PolicaRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/RecenzijaRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/RecenzijaRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/StavkaRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/StavkaRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/ZahtevRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/ZahtevRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/ZanrContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/ZanrContoller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/dto/RegistrationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/dto/RegistrationDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HelloWorld.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/KorisnikView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/KorisnikView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/SviKorisnici.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/SviKorisnici.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +93,8 @@
       <workItem from="1687466635418" duration="713000" />
       <workItem from="1687475273912" duration="7321000" />
       <workItem from="1687490547347" duration="1455000" />
-      <workItem from="1687522735204" duration="4374000" />
+      <workItem from="1687522735204" duration="6116000" />
+      <workItem from="1687537623138" duration="1215000" />
     </task>
     <servers />
   </component>
