@@ -15,7 +15,7 @@ public class RecenzijaDto {
 
      private Date datum;
 
-     private Korisnik korisnik;
+    // private Korisnik korisnik;
 
     public RecenzijaDto() {
     }
@@ -25,7 +25,7 @@ public class RecenzijaDto {
         this.ocena = recenzija.getOcena();
         this.tekst = recenzija.getTekst();
         this.datum = recenzija.getDatum();
-        this.korisnik = recenzija.getKorisnik();
+      //  this.korisnik = recenzija.getKorisnik();
     }
 
     public Long getId() {
@@ -59,20 +59,20 @@ public class RecenzijaDto {
     public void setDatum(Date datum) {
         this.datum = datum;
     }
-
-    public Korisnik getKorisnik() {
-        return korisnik;
-    }
-
-    public void setKorisnik(Korisnik korisnik) {
-        this.korisnik = korisnik;
-    }
+//
+//    public Korisnik getKorisnik() {
+//        return korisnik;
+//    }
+//
+//    public void setKorisnik(Korisnik korisnik) {
+//        this.korisnik = korisnik;
+//    }
 
     public RecenzijaDto(Long id, int ocena, String tekst, Date datum, Korisnik korisnik) {
         this.id = id;
         this.ocena = ocena;
         this.tekst = tekst;
         this.datum = datum;
-        this.korisnik = korisnik;
+//        this.korisnik = korisnik;
     }
 }
