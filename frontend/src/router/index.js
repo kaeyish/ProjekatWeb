@@ -17,6 +17,8 @@ import NoviZahtev from '../views/NoviZahtevView.vue'
 import DodavanjaView from '../views/Dodavanja.vue'
 import DodavanjeZanra from '../views/DodavanjeZanraView.vue'
 import DodavanjeKnjige from '../views/DodavanjeKnjigeView.vue'
+import ZanroviView from '../views/ZanroviView.vue'
+import RecenzijeView from '../views/RecenzijeView.vue'
 const routes = [
   {
     path: '/',
@@ -108,7 +110,17 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: LogOutView
-  }
+  },
+{
+  path: '/zanrovi',
+  name: 'zanrovi',
+  component: ZanroviView
+},
+{
+  path: '/recenzije',
+  name: 'recenzije',
+  component: RecenzijeView
+},
 ]
 
 const router = createRouter({

@@ -3,7 +3,6 @@
         <img alt="Site logo" id="logo" src="../assets/old-open-Book-Clip-Art.png">
         <h1>{{ msg }}</h1>
       <p>
-        PROBA
         </p>
   
   
