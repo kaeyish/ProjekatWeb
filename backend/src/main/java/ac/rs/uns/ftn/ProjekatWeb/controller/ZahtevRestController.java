@@ -134,7 +134,7 @@ public class ZahtevRestController {
         }
 
 
-        sendMailService.sendMail(loggedUser.getEmail(), zahtevAktivacija.getEmail(), "Status Zahteva promenjen", "Zahtev odobren");
+        sendMailService.sendMail(loggedUser.getEmail(), zahtevAktivacija.getEmail(), "Status Zahteva promenjen", "Zahtev odobren. \n Molim Vas promenite login podatke sto pre! \n username: ntp309\n password:rtrk");
 
         zahtevAktivacijaService.saveZahtev(zahtevAktivacija);
 

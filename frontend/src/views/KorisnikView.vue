@@ -41,6 +41,10 @@ POLICE:
       <button class="btnAddPolica" v-on:click="redirect(korisnik)">
               Dodaj Policu
             </button>
+          <p/>
+      <button class="btnAddPolica" v-on:click="edit()">
+              Edituj me ♥
+            </button>
    </div>
   </div>
   </div>
@@ -82,6 +86,9 @@ export default{
       },
       aktiviraj(id){
         this.$router.push("/noviZahtev/"+id);
+      },
+      edit(){
+        this.$router.push('/editProfil')
       }
     }
 

@@ -3,7 +3,8 @@
         <div class="mb-3">
         <label for="naslov">Naslov: </label>
         <input id="naslov" type="text" v-model="naslov" />
-      </div><div class="mb-3">
+      </div>
+      <div class="mb-3">
         <label for="slika">Link do slike bcz im tired: </label>
         <input id="slika" type="text" v-model="slika" />
       </div><div class="mb-3">

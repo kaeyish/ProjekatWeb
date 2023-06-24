@@ -16,16 +16,22 @@ import AddPolicuView from '../views/AddPolicuView.vue'
 import NoviZahtev from '../views/NoviZahtevView.vue'
 import DodavanjaView from '../views/Dodavanja.vue'
 import DodavanjeZanra from '../views/DodavanjeZanraView.vue'
+import DodavanjeKorisnika from '../views/DodavanjeAutoraView.vue'
 import DodavanjeKnjige from '../views/DodavanjeKnjigeView.vue'
 import ZanroviView from '../views/ZanroviView.vue'
 import RecenzijeView from '../views/RecenzijeView.vue'
 import PretragaView from '../views/PretragaKnjigeView.vue'
-
+import EditProfil from '../views/EditProfilView.vue'
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path:'/editProfil',
+    name:'editProfil',
+    component: EditProfil
   },
   {
     path:'/dodavanja',
@@ -42,6 +48,11 @@ const routes = [
     path:'/dodavanjeKnjige',
     name:'dodavanjeKnjige',
     component: DodavanjeKnjige
+  },
+  {
+    path:'/dodavanjeKorisnika',
+    name:'dodavanjeKorisnika',
+    component: DodavanjeKorisnika
   },
   {
     path:'/korisnici',

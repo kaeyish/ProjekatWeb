@@ -137,7 +137,7 @@ public class KorisnikContoller {
         korisnik.setOpis(korisnikDto.getOpis() == null ? korisnik.getOpis() : korisnikDto.getOpis());
         korisnik.setProfilnaSlika(korisnikDto.getProfilnaSlika() == null ? korisnik.getProfilnaSlika() : korisnikDto.getProfilnaSlika());
         korisnik.setDatumRodjenja(korisnikDto.getDatumRodjenja()== null ? korisnik.getDatumRodjenja() : korisnikDto.getDatumRodjenja());
-
+        korisnik.setKorisnickoIme(korisnik.getKorisnickoIme());
         //ne moze da promeni mejl i lozinku ako je pogresna lozink
 //            if (korisnikDto.getLozinka()!= null && korisnikDto.getLozinka() != korisnik.getLozinka()){
 //                return new ResponseEntity<>("Niste uneli tacnu lozinku, ne mozete promeniti podatke!",HttpStatus.FORBIDDEN);
@@ -201,6 +201,8 @@ public class KorisnikContoller {
         return new ResponseEntity("Samo autor moze da azurira svoje knjige",HttpStatus.FORBIDDEN);
     }
 
+
+
     //admin dodaje autora i aktivira mu nalog
     @PostMapping("/api/korisnik/kreiranjeAutora")
     public ResponseEntity <KorisnikDto> kreirajAutora(@RequestBody ZahtevAktivacija zahtevAktivacija, HttpSession session){
@@ -209,10 +211,11 @@ public class KorisnikContoller {
             return new ResponseEntity("Nemate pristup!",HttpStatus.NOT_FOUND);
         }
         if (prijavljeniKorisnik.getUloga().equals(Uloga.ADMINISTRATOR)){
-            String korisnicko_ime = UUID.randomUUID().toString().substring(0,7);
-            String lozinka = UUID.randomUUID().toString().substring(0,7);
+//            String korisnicko_ime = UUID.randomUUID().toString().substring(0,7);
+//            String lozinka = UUID.randomUUID().toString().substring(0,7);
 
-            autorService.aktivirajAutora(zahtevAktivacija.getAutor(),zahtevAktivacija.getEmail(), korisnicko_ime,lozinka);
+
+            autorService.aktivirajAutora(zahtevAktivacija.getAutor(),zahtevAktivacija.getEmail(), "ntp309","rtrk");
 
 
             return new ResponseEntity("Autor je uspesno kreiran!",HttpStatus.OK);
