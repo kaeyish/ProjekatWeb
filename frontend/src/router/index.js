@@ -5,6 +5,10 @@ import SviKorisnici from '../views/SviKorisnici.vue'
 import KorisnikView from '../views/KorisnikView.vue'
 import KnjigaView from '../views/KnjigaView.vue'
 import SveKnjige from '../views/SveKnjigeView.vue'
+import LoginView from '../views/LogInView.vue'
+import ZanroviView from '../views/ZanrView.vue'
+import DodajZanrView from '../views/DodajZanrView.vue'
+import PretragaKnjigeView from '../views/PretragaKnjigeView.vue'
 
 const routes = [
   {
@@ -26,6 +30,11 @@ const routes = [
     component: IndexView
   },
   {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
+  {
     path:'/korisnici',
     name:'korisnici',
     component: SviKorisnici
@@ -45,6 +54,21 @@ const routes = [
     name:'knjiga',
     component: KnjigaView
   },
+  {
+    path: '/zanrovi',
+    name: 'zanrovi',
+    component: ZanroviView
+  },
+  {
+    path: '/dodajZanr',
+    name: 'dodajZanr',
+    component: DodajZanrView
+  },
+  {
+    path: '/pretraga',
+    name: 'pretraga',
+    component: PretragaKnjigeView
+  }
 ]
 
 const router = createRouter({
