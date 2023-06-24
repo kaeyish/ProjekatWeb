@@ -77,11 +77,11 @@ export default{
         })
         .then((data) => {
           console.log(data);
-            this.$router.push('/userProfile');
+            this.$router.push('/index');
         })
         .catch((err) => {
           console.log(err);
-          alert('Something went wrong!');
+          alert('Registracija neuspesna!'); this.$router.push('/index');
         });
     }
   }

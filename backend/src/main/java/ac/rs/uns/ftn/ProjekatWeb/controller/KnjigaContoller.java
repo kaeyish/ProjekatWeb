@@ -5,6 +5,7 @@ import ac.rs.uns.ftn.ProjekatWeb.dto.KorisnikDto;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Knjiga;
 import ac.rs.uns.ftn.ProjekatWeb.entity.Korisnik;
 import ac.rs.uns.ftn.ProjekatWeb.service.KnjigaService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,14 +25,14 @@ public class KnjigaContoller {
 
     //prikaz svih knjiga
     @GetMapping("/api/knjige")
-    public ResponseEntity<List<KnjigaDto>> getKnjige(HttpSession session){
+    public ResponseEntity<List<KnjigaDto>> getKnjige(){
         List<Knjiga> knjigeList = knjigaService.findAll();
-        Knjiga k = (Knjiga) session.getAttribute("knjiga");
-        if (k == null){
-            System.out.println("Nema sesije");
-        } else {
-            System.out.println(k.getNaslov());
-        }
+//        Knjiga k = (Knjiga) session.getAttribute("knjiga");
+//        if (k == null){
+//            System.out.println("Nema sesije");
+//        } else {
+//            System.out.println(k.getNaslov());
+//        }
 
         List<KnjigaDto> knjigaDto = new ArrayList<>();
         for (Knjiga knjiga : knjigeList){

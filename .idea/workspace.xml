@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3474edbc-a83e-408d-ab05-9281cf8720e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KnjigaContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/controller/KnjigaContoller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/entity/Knjiga.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/entity/Knjiga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/entity/Korisnik.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/entity/Korisnik.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/entity/Polica.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ac/rs/uns/ftn/ProjekatWeb/entity/Polica.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +97,7 @@
       <workItem from="1687537623138" duration="1215000" />
       <workItem from="1687541338038" duration="33756000" />
       <workItem from="1687590525224" duration="331000" />
+      <workItem from="1687594072531" duration="1673000" />
     </task>
     <servers />
   </component>

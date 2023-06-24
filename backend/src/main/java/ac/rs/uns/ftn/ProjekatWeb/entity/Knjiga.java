@@ -35,11 +35,13 @@ public class Knjiga implements Serializable {
     @Column
     private float ocena;
 
+    @JsonIgnore()
     @OneToOne
     private Zanr zanr;
 
     //povezivanje sa autorom
     //@JsonBackReference
+    @JsonIgnore()
     @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Autor autor;
 

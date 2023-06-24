@@ -25,7 +25,7 @@
         <label for="opis">Opis: </label>
         <input id="opis" type="text" v-model="opis" />
       </div>
-        <!-- <div id="zanrovi">
+        <div id="zanrovi">
         <label for="zanr">Zanr: </label>
           <select id="zanr" v-model="zanr">
           <option v-for="zanr in zanrovi"
@@ -34,7 +34,7 @@
                 {{ zanr.naziv }}
         </option>
         </select>
-    </div> -->
+    </div>
       
       <button class="btn btn-outline-dark" type="submit" v-on:click.prevent = "submit()" >
         dodaj knjigu
@@ -54,8 +54,8 @@ export default{
             brojStrana:'',
             opis:'',
             ocena:'',
-            // zanr:'',
-            // zanrovi:[]
+            zanr:'',
+            zanrovi:[]
     }
     },
     mounted: function () {
@@ -78,7 +78,7 @@ export default{
             brojStrana:this.brojStrana,
             opis:this.opis,
             ocena:this.ocena,
-             //zanr:this.zanr,
+             zanr:this.zanr,
          };
         fetch('http://localhost:9090/api/korisnik/dodaj-knjigu', {
         method: 'POST',
@@ -88,7 +88,16 @@ export default{
         },
         body: JSON.stringify(payload)
       })
-      .then (this.$router.push("/index"));
+      .then((res) => {
+          console.log(res);
+          if (res.ok) {
+            return res.json();
+          } else {
+           alert("Lose uneti podaci. (ISBN mora biti jedinstven)");
+          }
+        })
+      .then (this.$router.push("/index"))
+      // .catch((error)=> {console.error("Error:", error); alert("Greska."); this.$router.push("/index")})
         }
     }
 

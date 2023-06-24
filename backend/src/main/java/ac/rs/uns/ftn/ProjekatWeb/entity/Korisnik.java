@@ -1,5 +1,6 @@
 package ac.rs.uns.ftn.ProjekatWeb.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.core.io.buffer.DataBufferLimitException;
@@ -54,7 +55,7 @@ public class Korisnik implements Serializable {
 //    @OneToOne
 //    private Polica read;
 
-    @JsonManagedReference
+//    @JsonManagedReference
     @OneToMany (mappedBy = "korisnik", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Set <Polica> ostalePolice = new HashSet<>();
 

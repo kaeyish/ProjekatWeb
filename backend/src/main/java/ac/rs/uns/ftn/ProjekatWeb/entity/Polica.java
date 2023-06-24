@@ -1,6 +1,7 @@
 package ac.rs.uns.ftn.ProjekatWeb.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
