@@ -35,6 +35,7 @@ public class Knjiga implements Serializable {
     @Column
     private float ocena;
 
+    @JsonIgnore
     @OneToOne
     private Zanr zanr;
 

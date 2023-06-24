@@ -12,8 +12,10 @@
     <router-link to="/register">Register</router-link>|
     <router-link to="/userProfile">Profil</router-link>   |
     <router-link to="/korisnici">Svi Korisnici</router-link> |
+    <router-link to = '/knjige'>Knjige</router-link> |
     <router-link to = '/zanrovi'>Svi zanrovi</router-link> |
     <router-link to = '/recenzije'>Recenzije</router-link> |
+    <router-link to = '/pretraga'>Pretraga</router-link> |
     <router-link to="/zahtevi">Zahtevi</router-link>  
 
   
