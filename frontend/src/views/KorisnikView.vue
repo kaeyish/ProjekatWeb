@@ -22,7 +22,7 @@
   
   <div class="desc">{{ korisnik.opis }}</div>
 <p/>
-POLICE: (aligned su desno)
+POLICE:
   <table id="police">
         <tr>
           <th>Naziv</th>
