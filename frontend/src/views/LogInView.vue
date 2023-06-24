@@ -20,6 +20,8 @@
 </template>
 
 <script>
+// import VueSession from 'vue-session'
+// Vue.use(VueSession)
 export default{
     name:'LogInView',
     data() {
@@ -48,16 +50,19 @@ export default{
           if (res.ok) {
             return res.json();
           } else {
-            throw new Error('Login failed');
+           alert("Ne mozete se ulogovati.");
           }
         })
         .then((data) => {
           console.log(data);
-            this.$router.push('/korisnik/'+data.id);
-        })
+          localStorage.setItem('user', JSON.stringify(data));
+          localStorage.setItem('uloga', JSON.stringify(data.uloga));
+          localStorage.setItem('id', JSON.stringify(data.id));
+          sessionStorage.setItem('id', JSON.stringify(data));
+          this.$router.push('/korisnik/'+data.id);})
         .catch((err) => {
           console.log(err);
-          alert('Something went wrong!');
+          alert('Vec ulogovan!');
         });
     }
   }

@@ -30,7 +30,7 @@ public class IndexRestController {
         Korisnik PREloggedUser = (Korisnik) session.getAttribute("korisnik");
 
         if (PREloggedUser != null){
-            return new ResponseEntity("Forbidden", HttpStatus.FORBIDDEN);
+            return new ResponseEntity("Sesija vec postoji.", HttpStatus.FORBIDDEN);
         }
 
         if (logInDto.getEmail()==null){
@@ -56,18 +56,17 @@ public class IndexRestController {
         return new ResponseEntity(dto, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "localhost:8081/index")
     @PostMapping("api/logout")
-    public ResponseEntity<KorisnikDto> logout(HttpSession session){
-        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
+    public void logout(HttpSession session){
+//        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
 
-        if (loggedUser == null){
-            return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
-        }
+//        if (loggedUser == null){
+//            return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
+//        }
 
         session.invalidate();
-        KorisnikDto dto = new KorisnikDto(loggedUser);
-        return new  ResponseEntity(loggedUser, HttpStatus.OK);
+//        KorisnikDto dto = new KorisnikDto(loggedUser);
+//        return new  ResponseEntity(loggedUser, HttpStatus.OK);
     }
 
     @PostMapping("/api/registracija")

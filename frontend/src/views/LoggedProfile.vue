@@ -1,6 +1,6 @@
 <template>
-DOBRO DOSLI UWU OWO
-<button type="button" id="logout-b" @click="logOut()">LogOut</button>
+
+<button class="btn btn-outline-dark" type="submit" v-on:click.prevent = "redirect()"> IDI NA PROFIL </button>
   
 </template>
 
@@ -17,6 +17,9 @@ export default{
           'Content-Type': 'application/json'
         },
       })
+    },
+    redirect() {
+      this.$router.push("/korisnik/"+localStorage.getItem("id"))
     }
   }
 

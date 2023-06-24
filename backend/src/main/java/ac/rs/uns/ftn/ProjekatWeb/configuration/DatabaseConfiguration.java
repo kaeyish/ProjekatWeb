@@ -108,6 +108,7 @@ public class DatabaseConfiguration {
 
         Citalac c1 = new Citalac("Ana","Anic","anana","aninmejl@hotmail.com","lozinka",Date.from(Instant.now()),"njenaslika.rs","Ovo je moj profil",Uloga.CITALAC);
         Autor a1 = new Autor("J.R.R","Tolkien","jrrtolkien","jrr@tolkien.com","jrrpass",Date.from(Instant.now()),"JRRslika","Pisac knjiga",Uloga.AUTOR,true);
+        Autor a2 = new Autor("Buduci","Autor","placeholder","","",Date.from(Instant.now()),"slika123","Pisac knjiga",Uloga.AUTOR,false);
 
         Set<Polica> police3 = c1.getOstalePolice();
         police3.add(p10);        police.add(p11);        police.add(p12);
@@ -117,6 +118,7 @@ public class DatabaseConfiguration {
 
         citalacRepository.save(c1);
         autorRepository.save(a1);
+        autorRepository.save(a2);
         knjiga1.setAutor(a1);
         knjigaRepository.save(knjiga1);
 

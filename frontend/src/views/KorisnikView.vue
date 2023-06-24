@@ -7,6 +7,13 @@
     </div>
     <div class="title-total">   
       <div class="title">{{korisnik.uloga}}</div>
+      <div v-if="korisnik.uloga=='AUTOR' && !korisnik.aktivnost">
+    Korisnik neaktivan
+    <button class="btnAktiviraj" v-on:click="aktiviraj(korisnik.id)">
+              Aktiviraj
+            </button>
+        </div>
+  
       <h2>{{korisnik.ime}} {{korisnik.prezime}}</h2>
       <h6>datum rodjenja nije najfunkcionalniji: {{ korisnik.datumRodjenja }}</h6>
       <p/>
@@ -14,8 +21,8 @@
     
   
   <div class="desc">{{ korisnik.opis }}</div>
-
-
+<p/>
+POLICE: (aligned su desno)
   <table id="police">
         <tr>
           <th>Naziv</th>
@@ -31,7 +38,9 @@
           </td>
         </tr>
       </table>
-
+      <button class="btnAddPolica" v-on:click="redirect(korisnik)">
+              Dodaj Policu
+            </button>
    </div>
   </div>
   </div>
@@ -56,6 +65,17 @@ export default{
             .catch((error) => {
                 console.error("Error:", error);
             });    
+    },
+    methods:{
+      seeMore(polica){
+        this.$router.push("/polica/"+polica.id);
+      },
+      redirect(korisnik){
+        this.$router.push("/dodaj-policu/"+korisnik.id);
+      },
+      aktiviraj(id){
+        this.$router.push("/noviZahtev/"+id);
+      }
     }
 
 }

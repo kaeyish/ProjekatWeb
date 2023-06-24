@@ -15,12 +15,22 @@
             }
         },
         mounted: function () {
+            if (localStorage.getItem("user") == null){
+                alert("Niste ulogovani");
+                this.$router.push("/index");
+            }
+            else if(localStorage.getItem("user").uloga!="ADMINISTRATOR"){
+                alert("Ovoj stranici moze pristupiti samo admin");
+                
+                this.$router.push("/index");
+            }
+            else{
             fetch('http://localhost:9090/api/zahtevi/'+ this.$route.params.id + "/" + this.$route.params.korisnik_id)
             .then(response => response.json())
                 .then(data => {console.log("Success:", data); this.zahtev = data})
                 .catch((error) => {
                     console.error("Error:", error);
-                });    
+                });    }
         }
     
     }

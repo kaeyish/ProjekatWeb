@@ -2,14 +2,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import IndexView from '../views/IndexView.vue'
 import LogInView from '../views/LogInView.vue'
+import LogOutView from '../views/LogOutView.vue'
 import LoggedProfile from '../views/LoggedProfile.vue'
 import KorisnikView from '../views/KorisnikView.vue'
 import KnjigeView from '../views/KnjigeView.vue'
 import KnjigaView from '../views/KnjigaView.vue'
 import ZahtevView from '../views/ZahtevView.vue'
+import ZahteviView from '../views/ZahteviView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import SviKorisnici from '../views/SviKorisnici.vue'
-
+import PolicaView from '../views/to-fill/PolicaView.vue'
+import AddPolicuView from '../views/AddPolicuView.vue'
+import NoviZahtev from '../views/NoviZahtevView.vue'
 const routes = [
   {
     path: '/',
@@ -20,6 +24,16 @@ const routes = [
     path:'/korisnici',
     name:'korisnici',
     component: SviKorisnici
+  },
+  {
+    path:'/noviZahtev/:id',
+    name:'noviZahtev',
+    component: NoviZahtev
+  },
+  {
+    path:'/dodaj-policu/:id',
+    name:'dodajPolicu',
+    component: AddPolicuView
   },
   {
     path:'/index',
@@ -52,14 +66,29 @@ const routes = [
     component: KnjigaView
   },
   {
+    path:'/zahtevi',
+    name:'zahtevi',
+    component: ZahteviView
+  },
+  {
     path:'/zahtev/:id/:korisnik_id',
     name: 'zahtev',
     component: ZahtevView
   },
   {
+    path:'/polica/:id',
+    name: 'polica',
+    component: PolicaView
+  },
+  {
     path: '/login',
     name: 'login',
     component: LogInView
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: LogOutView
   }
 ]
 

@@ -93,17 +93,19 @@ public class PolicaRestController {
 
     @PostMapping ("/api/nova-polica")
     public ResponseEntity savePolica (@RequestBody Polica polica, HttpSession session){
-        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
-
-        if (loggedUser == null){
-            return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
-        }
+//        Korisnik loggedUser = (Korisnik) session.getAttribute("korisnik");
+//
+//        if (loggedUser == null){
+//            return new ResponseEntity("Nemate pristup ovoj stranici", HttpStatus.FORBIDDEN);
+//        }
 
         if (policaService.findByNazivAndKorisnik(polica.getNaziv(),polica.getKorisnik())!=null){
             return new ResponseEntity("Polica sa datim imenom vec postoji.", HttpStatus.BAD_REQUEST);
         }
+        polica.setKorisnik(polica.getKorisnik());
         this.policaService.savePolica(polica);
-        return new ResponseEntity("Uspesno dodavanje police.", HttpStatus.OK);
+        PolicaDto dto = new PolicaDto(polica);
+        return new ResponseEntity(dto, HttpStatus.OK);
     }
 
     @DeleteMapping ("/api/brisanje-police/{id}")
