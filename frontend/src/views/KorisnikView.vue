@@ -65,6 +65,13 @@ export default{
             .catch((error) => {
                 console.error("Error:", error);
             });    
+        //     fetch('http://localhost:9090//api/korisnik/police/'+ this.$route.params.id)
+        //    .then(response => response.json())
+        //     .then(data => {console.log("Success:", data); this.police=data})
+        //     .catch((error) => {
+        //         console.error("Error:", error);
+        //     });    
+            
     },
     methods:{
       seeMore(polica){
