@@ -9,6 +9,8 @@ import LoginView from '../views/LogInView.vue'
 import ZanroviView from '../views/ZanrView.vue'
 import DodajZanrView from '../views/DodajZanrView.vue'
 import PretragaKnjigeView from '../views/PretragaKnjigeView.vue'
+import RegisterView from '../views/RegisterView.vue'
+import RecenzijeView from '../views/RecenzijeView.vue'
 
 const routes = [
   {
@@ -33,6 +35,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView
+  },
+  {
+    path:'/register',
+    name:'register',
+    component: RegisterView
   },
   {
     path:'/korisnici',
@@ -63,6 +70,11 @@ const routes = [
     path: '/dodajZanr',
     name: 'dodajZanr',
     component: DodajZanrView
+  },
+  {
+    path: '/recenzije',
+    name : 'recenzije',
+    component : RecenzijeView
   },
   {
     path: '/pretraga',

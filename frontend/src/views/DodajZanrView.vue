@@ -3,6 +3,7 @@
   <input v-model="zanr.naziv">
   <br>
   <button v-on:click="submit()">submit</button>
+  <br>
 </template>
 
 <script>
