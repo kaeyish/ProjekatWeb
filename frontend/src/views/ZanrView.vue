@@ -1,7 +1,8 @@
 <template>
   <div id="zanrovi">
     ZANROVI
-      <table class="zanr">
+    <br>
+      <table class="zanr" style="text-align: center;">
       <thead>
         <tr>
           <th>Naziv</th>
@@ -45,10 +46,12 @@ export default {
 
 <style>
   .zanr {
-  width: 50%;
+  width: auto;
   border-collapse: collapse;
   margin-bottom: 10px;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 .zanr th,
 .zanr td {

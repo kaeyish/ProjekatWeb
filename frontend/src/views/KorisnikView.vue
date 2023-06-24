@@ -13,8 +13,8 @@
        
         
       
-      <div class="desc">{{ korisnik.opis }}</div>
-    
+      <div class="desc">Opis korisnika: {{ korisnik.opis }}</div>
+          <br>
     
       <table id="police">
             <tr>

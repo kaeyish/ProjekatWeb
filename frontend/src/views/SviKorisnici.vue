@@ -3,12 +3,41 @@
 
         Korisnici U BAZI:
 
-        <li v-for="user of users"
+        <!-- <li v-for="user of users"
             :key="user.id"
             :user="user">
              {{ user.ime }} {{ user.prezime }}, {{ user.uloga }}
              <button class="btn btn-outline-dark" type="button" v-on:click.prevent = "loadUser(user)" >Detalji </button>
-    </li>
+    </li> -->
+    <table class="korisnici" style="text-align: center;">
+      <thead>
+        <tr>
+          <th>Ime</th>
+          <th>Prezime</th>
+          <th>Korisnicko ime</th>
+          <th>Email</th>
+          <th>Opis</th>
+          <th>Uloga</th>
+          <!-- <th>Police</th> -->
+          <th>Detalji</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user of users"
+            :key="user.id"
+            :user="user">
+          <td>{{ user.ime }}</td>
+          <td>{{ user.prezime }}</td>
+          <td>{{ user.korisnickoIme }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.opis }}</td>
+          <td>{{ user.uloga }}</td>
+          <!-- <td>{{ user.police }}</td> -->
+          <td> <button class="btn btn-outline-dark" type="button" v-on:click.prevent = "loadUser(user)" >Detalji </button></td>
+
+        </tr>
+      </tbody>
+    </table>
     </div>
   </template>
     

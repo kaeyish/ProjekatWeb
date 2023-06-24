@@ -49,10 +49,12 @@
   
   <style>
   table {
-  width: 100%;
+  width: auto;
   border-collapse: collapse;
   margin-bottom: 20px;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 table th,
 table td {

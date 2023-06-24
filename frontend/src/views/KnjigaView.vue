@@ -2,9 +2,12 @@
   
     <div id="knjiga">
   <!-- <img src={{ knjiga.naslovnaFotografija }}> -->
-  {{ knjiga.naslov }}
+  <h3>{{ knjiga.autor }}</h3>
+  <h2>{{ knjiga.naslov }}</h2>
   <p/>
    {{ knjiga.isbn }}
+   <h4>{{ knjiga.opis }}</h4>
+   <h5>Ocena: {{ knjiga.ocena }}</h5>
    <p/>
    <button class="btn btn-outline-dark" type="button" v-on:click.prevent = "getRecenzije(knjiga.id)">Izlistaj recenzije knjige </button>
     </div>
