@@ -33,24 +33,24 @@ public class AutorService {
     //kreiraj novog autora
     public Autor aktivirajAutora(Autor autor, String email, String korisnicko_ime, String lozinka) {
         autor.setEmail(email);
-        autor.setAktivnost(true);
+        autor.setAktivnost(!autor.isAktivnost());
         autor.setKorisnickoIme(korisnicko_ime);
         autor.setLozinka(lozinka);
-//        Autor a = new Autor(email, korisnicko_ime, lozinka);
-//
-//        Polica read = new Polica("Read", true);
-//        Polica currently_reading = new Polica("Currently Reading", true);
-//        Polica want_to_read = new Polica("Want to Read", true);
-//
-//        policaService.savePolica(read);
-//        policaService.savePolica(currently_reading);
-//        policaService.savePolica(want_to_read);
-//
-//        Set<Polica> police = a.getOstalePolice();
-//
-//        police.add(read);
-//        police.add(currently_reading);
-//        police.add(want_to_read);
+        Autor a = new Autor(email, korisnicko_ime, lozinka);
+
+        Polica read = new Polica("Read", true);
+        Polica currently_reading = new Polica("Currently Reading", true);
+        Polica want_to_read = new Polica("Want to Read", true);
+
+        policaService.savePolica(read);
+        policaService.savePolica(currently_reading);
+        policaService.savePolica(want_to_read);
+
+        Set<Polica> police = a.getOstalePolice();
+
+        police.add(read);
+        police.add(currently_reading);
+        police.add(want_to_read);
 
         autorRepository.save(autor);
         return autor;

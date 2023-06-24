@@ -14,11 +14,30 @@ import SviKorisnici from '../views/SviKorisnici.vue'
 import PolicaView from '../views/to-fill/PolicaView.vue'
 import AddPolicuView from '../views/AddPolicuView.vue'
 import NoviZahtev from '../views/NoviZahtevView.vue'
+import DodavanjaView from '../views/Dodavanja.vue'
+import DodavanjeZanra from '../views/DodavanjeZanraView.vue'
+import DodavanjeKnjige from '../views/DodavanjeKnjigeView.vue'
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path:'/dodavanja',
+    name:'dodavanja',
+    component: DodavanjaView
+  },
+  {
+    path:'/dodavanjeZanra',
+    name:'dodavanjeZanra',
+    component: DodavanjeZanra
+  },
+
+  {
+    path:'/dodavanjeKnjige',
+    name:'dodavanjeKnjige',
+    component: DodavanjeKnjige
   },
   {
     path:'/korisnici',

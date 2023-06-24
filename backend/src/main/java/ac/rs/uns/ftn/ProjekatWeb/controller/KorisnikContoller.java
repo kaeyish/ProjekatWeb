@@ -220,6 +220,7 @@ public class KorisnikContoller {
         return new ResponseEntity("Ova opcija je dozvoljena samo administratorima!",HttpStatus.FORBIDDEN);
     }
     //admin dodaje zanr
+    @CrossOrigin(origins = "http://localhost:8081/dodajZanr")
     @PostMapping("/api/korisnik/dodajZanr")
     public ResponseEntity<ZanrDto> dodajZanr(@RequestBody ZanrDto zanrDto, HttpSession session){
         Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");

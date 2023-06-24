@@ -59,11 +59,7 @@ export default{
           localStorage.setItem('uloga', JSON.stringify(data.uloga));
           localStorage.setItem('id', JSON.stringify(data.id));
           sessionStorage.setItem('id', JSON.stringify(data));
-          this.$router.push('/korisnik/'+data.id);})
-        .catch((err) => {
-          console.log(err);
-          alert('Vec ulogovan!');
-        });
+          this.$router.push('/korisnik/'+data.id);});
     }
   }
 };

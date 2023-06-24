@@ -3,12 +3,12 @@
 <template>
   
   <button class="btn btn-outline-dark" type="submit" v-on:click.prevent = "logout()" >LogOut</button>
+  <button class="btn btn-outline-dark" type="submit" v-on:click.prevent = "dodaj()" >DODAJ +</button>
 
   <nav>
     <!-- <router-link to="/">Home</router-link> | -->
     <router-link to="/index">Index</router-link> |
     <router-link to="/login">LogIn</router-link> |
-    <router-link to="/logout">Log Out</router-link> |
     <router-link to="/register">Register</router-link>|
     <router-link to="/userProfile">Profil</router-link>   |
     <router-link to="/korisnici">Svi Korisnici</router-link> |
@@ -23,7 +23,18 @@
     logout(){
       localStorage.clear();
       alert("logged out");
-      this.$router.push('/index');
+
+      fetch('http://localhost:9090/api/logout',{
+        method: 'POST',
+        credentials: 'include',
+        })
+                .then (this.$router.push('/index'))
+                .catch((error) => {
+                    console.error("Error:", error);
+                });    
+    },
+    dodaj(){
+      this.$router.push("/dodavanja")
     }
   }
 }

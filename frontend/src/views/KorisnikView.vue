@@ -7,7 +7,7 @@
     </div>
     <div class="title-total">   
       <div class="title">{{korisnik.uloga}}</div>
-      <div v-if="korisnik.uloga=='AUTOR' && !korisnik.aktivnost">
+      <div v-if="korisnik.uloga=='AUTOR'">
     Korisnik neaktivan
     <button class="btnAktiviraj" v-on:click="aktiviraj(korisnik.id)">
               Aktiviraj

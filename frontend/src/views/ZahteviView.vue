@@ -21,7 +21,7 @@
                   Prihvati
                 </button>
               </td><td>
-                <button class="btnSeeMore" v-on:click="odbij()">
+                <button class="btnSeeMore" v-on:click="odbij(zahtev.id)">
                   Odbij
                 </button>
               </td>
@@ -68,7 +68,16 @@
       .then (this.$router.push("/index"));
 
           },
-          odbij(){
+          odbij(id){     
+            fetch('http://localhost:9090/api/odbij-zahtev/'+id, {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      .then (this.$router.push("/index"));
+
 
           }
         }
