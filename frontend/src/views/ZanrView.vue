@@ -1,13 +1,21 @@
 <template>
   <div id="zanrovi">
     ZANROVI
-    <li v-for="zanr of zanrovi"
+      <table class="zanr">
+      <thead>
+        <tr>
+          <th>Naziv</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="zanr of zanrovi"
             :key="zanr.id"
             :zanr="zanr">
-             {{ zanr.naziv }}
-    </li>
-
-  </div>
+          <td>{{ zanr.naziv }}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
 </template>
 
 <script>
@@ -36,5 +44,22 @@ export default {
 </script>
 
 <style>
-
+  .zanr {
+  width: 50%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.zanr th,
+.zanr td {
+  padding: 7px;
+  text-align: center;
+  border: 1px solid #000000;
+}
+.zanr th {
+  background-color: #9cf4eb;
+}
+.zanr tbody tr:hover {
+  background-color: #eed0fc5a;
+}
 </style>

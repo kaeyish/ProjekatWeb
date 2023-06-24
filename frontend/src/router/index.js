@@ -11,6 +11,8 @@ import DodajZanrView from '../views/DodajZanrView.vue'
 import PretragaKnjigeView from '../views/PretragaKnjigeView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import RecenzijeView from '../views/RecenzijeView.vue'
+import PretragaView from '../views/PretragaView.vue'
+
 
 const routes = [
   {
@@ -80,6 +82,11 @@ const routes = [
     path: '/pretraga',
     name: 'pretraga',
     component: PretragaKnjigeView
+  },
+  {
+    path: '/pretragaKnjige',
+    name: 'pretragaKnjige',
+    component: PretragaView
   }
 ]
 

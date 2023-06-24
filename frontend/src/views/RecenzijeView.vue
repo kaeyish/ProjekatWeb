@@ -1,11 +1,24 @@
 <template>
     <div id="recenzije">
       Recenzije
-      <li v-for="recenzija of recenzije"
-              :key="recenzija.id"
-              :recenzija="recenzija">
-               {{ recenzija.tekst }}
-      </li>
+      <table>
+      <thead>
+        <tr>
+          <th>Tekst</th>
+          <th>Ocena</th>
+          <th>Datum</th>
+          <th>Autor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="recenzija in recenzije" :key="recenzija.id">
+          <td>{{ recenzija.tekst }}</td>
+          <td>{{ recenzija.ocena }}</td>
+          <td>{{ recenzija.datum }}</td>
+          <td>{{ recenzija.autor }}</td>
+        </tr>
+      </tbody>
+    </table>
     </div>
   </template>
   
@@ -35,5 +48,22 @@
   </script>
   
   <style>
-  
+  table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  text-align: center;
+}
+table th,
+table td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #000000;
+}
+table th {
+  background-color: #5ac5bc;
+}
+table tbody tr:hover {
+  background-color: #eed0fc5a;
+}
   </style>
